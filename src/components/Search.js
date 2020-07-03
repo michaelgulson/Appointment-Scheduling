@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './Header';
 
-const About = () => (
+const Search = () => (
         <div>
             <Header />
-            About
+            Search
         </div>
 )
 
 
-export default About
+export default Search
