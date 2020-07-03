@@ -85,7 +85,7 @@ ul#horizontal-list li {
   float: none;
   width: 12.5%;
   padding: 10px;
-  align: center;
+  align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
 }
