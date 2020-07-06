@@ -90,6 +90,16 @@ ul#horizontal-list li {
   padding-bottom: 20px;
 }
 
+.column-8-right{
+  float: right;
+  width: 25%;
+  padding: 10px;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
 .column-8-logo {
   display: inline-block;
   float: none;
@@ -119,7 +129,8 @@ body {
   background-image: url("caregiver_1280_squished.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% -500%;
+  background-position: 50% 80%;
+  background-size: cover
 }
 
 /*

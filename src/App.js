@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-import { Home, About, Contact, Services, Jobs, Volunteer, Search } from './components/index'
+import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp } from './components/index'
 
 
 const App = () => (
@@ -14,6 +14,7 @@ const App = () => (
       <Route path="/jobs" component={Jobs} />
       <Route path="/volunteer" component={Volunteer} />
       <Route path="/search" component={Search} />
+      <Route path="/signup" component={SignUp} />
     </Switch>
   </React.Fragment>
 );
