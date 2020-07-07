@@ -1,10 +1,10 @@
 
 import React from 'react';
 import '../App.css'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
-
-const fs = require('fs');
+//fileio
+//const fs = require('fs');
 
 
 class Login extends React.Component {
@@ -28,9 +28,11 @@ class Login extends React.Component {
     fs.writeFileSync('login.json', data);*/
 
     //database call
+    event.preventDefault();
     alert('email and password: ' + this.state.email + ' ' + this.state.password);
     console.log('email and password: ' + this.state.email + ' ' + this.state.password);
-    event.preventDefault(); //not sure what this does
+    this.props.history.push('/SignUp');
+     //not sure what this does
   }
 
   render() {
@@ -39,11 +41,11 @@ class Login extends React.Component {
         <div class ="column-8-right">
           <form onSubmit={this.handleSubmit}>
             <label>
-              Email:
+              Email: 
               <input type="email" value={this.state.email} onChange={this.handleEmailChange} />        </label>
             <br></br>
             <label>
-                Password:
+                Password: 
                 <input type="password" value={this.state.password} onChange={this.handlePasswordChange} /> 
             </label>
             <br></br>
@@ -56,4 +58,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login
+export default withRouter(Login);
