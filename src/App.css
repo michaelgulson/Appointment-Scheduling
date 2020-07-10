@@ -125,14 +125,27 @@ ul#horizontal-list li {
   }
 }
 
+/*
 body {
   background-image: url("caregiver_1280_squished.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 80%;
   background-size: cover
+}*/
+
+body {
+background-color: #bedefe;
+
 }
 
+.background-image{
+    background-image: url("caregiver_1280_squished.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 80%;
+    background-size: cover
+}
 /*
 .background-image {
   top: 80px;
