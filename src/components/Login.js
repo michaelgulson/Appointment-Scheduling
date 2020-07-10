@@ -31,7 +31,7 @@ class Login extends React.Component {
     event.preventDefault();
     alert('email and password: ' + this.state.email + ' ' + this.state.password);
     console.log('email and password: ' + this.state.email + ' ' + this.state.password);
-    this.props.history.push('/SignUp');
+    this.props.history.push('/Account');
      //not sure what this does
   }
 

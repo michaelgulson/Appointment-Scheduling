@@ -86,8 +86,8 @@ ul#horizontal-list li {
   width: 12.5%;
   padding: 10px;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 .column-8-right{
@@ -96,7 +96,7 @@ ul#horizontal-list li {
   padding: 10px;
   align-items: center;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 
 }
 
@@ -107,7 +107,7 @@ ul#horizontal-list li {
   padding: 10px;
   text-align: center;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 
 } 
 
