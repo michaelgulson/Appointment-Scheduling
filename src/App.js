@@ -2,7 +2,22 @@ import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
 import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account } from './components/index'
+//import firebase from 'firebase/app'
 
+/*
+const firebaseConfig = {
+  apiKey: "AIzaSyAOVms5PKUKe9nXl1_-C147etBUzAs7mx8",
+  authDomain: "st-lorraine.firebaseapp.com",
+  databaseURL: "https://st-lorraine.firebaseio.com",
+  projectId: "st-lorraine",
+  storageBucket: "st-lorraine.appspot.com",
+  messagingSenderId: "501666410157",
+  appId: "1:501666410157:web:12d59437ddd678a1826024",
+  measurementId: "G-XE7JLMMTY6"
+};
+
+firebase.initializeApp(firebaseConfig);
+*/
 
 const App = () => (
   <React.Fragment>
