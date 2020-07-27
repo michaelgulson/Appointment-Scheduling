@@ -3,17 +3,18 @@ const now = new Date()
 export default [
   {
     id: 0,
-    title: 'All Day Event very long title',
+    title: 'All Day Workout \n Employee: Amy \n Client: John',
     allDay: true,
-    start: new Date(2020, 11, 1),
-    end: new Date(2020, 11, 2),
-    color: 'green',
+    start: new Date(2020, 6, 1, 12, 0, 0, 0),
+    end: new Date(2020, 6, 1, 14, 0, 0, 0),
+    color: '#25cff5',
   },
   {
     id: 1,
     title: 'Long Event',
-    start: new Date(2015, 3, 7),
-    end: new Date(2015, 3, 10),
+    start: new Date(2020, 6, 5, 15, 30, 0, 0),
+    end: new Date(2020, 6, 5, 16, 0, 0, 0),
+    color: '#f2f525'
   },
 
   {
@@ -102,13 +103,13 @@ export default [
   },
   {
     id: 14,
-    title: 'Today',
+    title: 'Point in Time Event \n lololololololol \n lololololololol',
     start: new Date(new Date().setHours(new Date().getHours() - 3)),
     end: new Date(new Date().setHours(new Date().getHours() + 3)),
   },
   {
     id: 15,
-    title: 'Point in Time Event',
+    title: 'Point in Time Event \n lololololololol \n lololololololol',
     start: now,
     end: now,
   },

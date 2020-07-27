@@ -4,7 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
-import Modal from 'react-modal';
+//import Modal from 'react-modal';
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
 
 
 ReactDOM.render(
