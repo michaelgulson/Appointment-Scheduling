@@ -2,14 +2,10 @@ import React from 'react'
 import '../App.css';
 import { Link } from 'react-router-dom'
 import {
-  Menu,
-  MenuList,
-  MenuButton,
-  MenuItem,
-  MenuLink,
-} from "@reach/menu-button";
-import "@reach/menu-button/styles.css";
-
+  DropdownMenu,
+  DropdownTrigger,
+  DropdownContent
+} from "@nteract/dropdown-menu";
 
 const Header = () => (
     <div>
@@ -34,19 +30,28 @@ const Header = () => (
                 <Link to="/volunteer">Volunteer</Link>
           </div>
           <div class = "column-8">
-          <Menu>
-            <MenuButton class="dropbtn">
-              Account <span aria-hidden>▾</span>
-            </MenuButton>
-            <MenuList>
-              <MenuLink as="a" href="/signup">
-                Sign Up
-              </MenuLink>
-              <MenuLink as="a" href="/">
-                Log In
-              </MenuLink>
-            </MenuList>
-          </Menu>                 
+              <DropdownMenu>
+              <DropdownTrigger>
+                <button title="Account">
+                </button>
+              </DropdownTrigger>
+          <DropdownContent>
+          <li
+            role="option"
+            aria-selected="false"
+            tabIndex="0"
+          >
+              <Link to="/Sign Up">Sign Up</Link>
+          </li>
+          <li
+            role="option"
+            aria-selected="false"
+            tabIndex="0"
+          >
+            <Link to="/">Log In</Link>
+          </li>
+        </DropdownContent>
+        </DropdownMenu>                     
           </div>
         </div>        
       </header>
