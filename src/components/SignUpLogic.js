@@ -1,17 +1,39 @@
 import React from 'react';
 import '../App.css'
 import { Link, withRouter } from 'react-router-dom'
-import  mysql from 'mysql';
+// var db = require('mysql-promise')();
 
-var connection = mysql.createConnection({
-  host: 'stlorraine.cumbxkukha4z.us-east-2.rds.amazonaws.com',
-  user: 'admin',
-  password: 'Va11eyF0rge',
-  database: 'mydb'
-});
+// db.configure({
+// 	"host": "stlorraine.cumbxkukha4z.us-east-2.rds.amazonaws.com",
+// 	"user": "admin",
+// 	"password": "Va11eyF0rge",
+//   "database": "mydb"
+// });
 
-connection.connect();
 
+
+
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'admin',
+//   password: 'Va11eyF0rge',
+//   database: 'mydb',
+//   port: 3306
+// });
+
+// connection.connect();
+
+/*connection.query(
+      'INSERT INTO UserInfo (type, firstName, lastName, email, password, cellphone, address) VALUES(client,' + this.state.fname + ','+ this.state.lname + ',' + this.state.email + ',' + this.state.password + ',' + this.state.cellphone + ',' + this.state.address+')',
+
+      function(err, results, fields) {
+        console.log(results); // results contains rows returned by server
+        console.log(fields); // fields contains extra meta data about results, if available
+      }
+    );
+    */ 
 /*
 const { Sequelize } = require('sequelize');
 //fileio
@@ -56,15 +78,11 @@ class SignUpLogic extends React.Component {
     let data = JSON.stringify(account);
     fs.writeFileSync('login.json', data);*/
     alert('info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
-    console.log('big info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
-    connection.query(
-      'INSERT INTO UserInfo (type, firstName, lastName, email, password, cellphone, address) VALUES(client,' + this.state.fname + ','+ this.state.lname + ',' + this.state.email + ',' + this.state.password + ',' + this.state.cellphone + ',' + this.state.address+')',
+    //console.log('big info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
+    // db.query('SELECT * FROM UserInfo').spread(function (users) {
+    //   console.log('Hello users', users);
+    // });
 
-      function(err, results, fields) {
-        console.log(results); // results contains rows returned by server
-        console.log(fields); // fields contains extra meta data about results, if available
-      }
-    ); 
     this.props.history.push('/');
     //testconnection();
     event.preventDefault(); //not sure what this does
