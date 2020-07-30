@@ -1,10 +1,37 @@
 import React from 'react';
 import '../App.css'
 import { Link, withRouter } from 'react-router-dom'
+import  mysql from 'mysql';
 
+var connection = mysql.createConnection({
+  host: 'stlorraine.cumbxkukha4z.us-east-2.rds.amazonaws.com',
+  user: 'admin',
+  password: 'Va11eyF0rge',
+  database: 'mydb'
+});
+
+connection.connect();
+
+/*
+const { Sequelize } = require('sequelize');
 //fileio
 //const fs = require('fs');
+const sequelize = new Sequelize('database-1', 'admin', 'Va11eyF0rge', {
+  host: "database-1.cluster-cumbxkukha4z.us-east-2.rds.amazonaws.com",
+  port: 3306
+})
 
+
+async function testconnection(){
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+  return
+}
+*/
 
 class SignUpLogic extends React.Component {
   constructor(props) {
@@ -30,7 +57,16 @@ class SignUpLogic extends React.Component {
     fs.writeFileSync('login.json', data);*/
     alert('info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
     console.log('info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
+    connection.query(
+      'INSERT INTO UserInfo (type, firstName, lastName, email, password, cellphone, address) VALUES(client,' + this.state.fname + ','+ this.state.lname + ',' + this.state.email + ',' + this.state.password + ',' + this.state.cellphone + ',' + this.state.address+')',
+
+      function(err, results, fields) {
+        console.log(results); // results contains rows returned by server
+        console.log(fields); // fields contains extra meta data about results, if available
+      }
+    ); 
     this.props.history.push('/');
+    //testconnection();
     event.preventDefault(); //not sure what this does
   }
 
