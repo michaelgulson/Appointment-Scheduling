@@ -56,7 +56,7 @@ class SignUpLogic extends React.Component {
     let data = JSON.stringify(account);
     fs.writeFileSync('login.json', data);*/
     alert('info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
-    console.log('info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
+    console.log('big info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
     connection.query(
       'INSERT INTO UserInfo (type, firstName, lastName, email, password, cellphone, address) VALUES(client,' + this.state.fname + ','+ this.state.lname + ',' + this.state.email + ',' + this.state.password + ',' + this.state.cellphone + ',' + this.state.address+')',
 
