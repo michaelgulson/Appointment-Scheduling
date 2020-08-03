@@ -22,6 +22,10 @@
     "mysql": "^2.18.1",
     "mysql-promise": "^5.0.0",
     "mysql2": "^2.1.0",
+    "node-gyp": "^7.0.0",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
+    "pg-native": "^3.0.0",
     "react": "^16.13.1",
     "react-big-calendar": "^0.26.0",
     "react-calendar-from-scratch": "^0.1.0",
@@ -33,7 +37,7 @@
     "react-native-events-calendar-custom": "^1.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "sequelize": "^6.3.3"
+    "sequelize": "^4.43.1"
   },
   "scripts": {
     "start": "react-scripts start",
