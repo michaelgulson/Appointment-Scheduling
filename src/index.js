@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
+import Amplify from 'aws-amplify'
+import config from './aws-exports'
+Amplify.configure(config)
+
 //import pg from 'pg'
 //import Modal from 'react-modal';
-const { Client } = require('pg');
+/* const { Client } = require('pg');
 
 const client = new Client({
     user: 'master',
@@ -18,7 +22,7 @@ const client = new Client({
 
 client.connect();
 
-client.end();
+client.end(); */
 
 /*SEQUELIZE POSTGRES
 const Sequelize = require("sequelize");

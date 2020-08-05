@@ -5,8 +5,13 @@ export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo {
     onCreateTodo {
       id
-      name
-      description
+      type
+      firstName
+      lastName
+      email
+      password
+      cellphone
+      address
       createdAt
       updatedAt
     }
@@ -16,8 +21,13 @@ export const onUpdateTodo = /* GraphQL */ `
   subscription OnUpdateTodo {
     onUpdateTodo {
       id
-      name
-      description
+      type
+      firstName
+      lastName
+      email
+      password
+      cellphone
+      address
       createdAt
       updatedAt
     }
@@ -27,8 +37,13 @@ export const onDeleteTodo = /* GraphQL */ `
   subscription OnDeleteTodo {
     onDeleteTodo {
       id
-      name
-      description
+      type
+      firstName
+      lastName
+      email
+      password
+      cellphone
+      address
       createdAt
       updatedAt
     }

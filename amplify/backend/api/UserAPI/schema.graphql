@@ -1,0 +1,10 @@
+type Todo @model {
+  id: ID!
+  type: String!
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+  cellphone: String
+  address: String
+}
