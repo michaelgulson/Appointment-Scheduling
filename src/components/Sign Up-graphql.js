@@ -8,6 +8,8 @@ import uuid from 'uuid/v4'
 import { listUsers as ListUsers } from '../graphql/queries'
 // import the mutation
 import { createUser as CreateUser } from '../graphql/mutations'
+import { Link, withRouter } from 'react-router-dom'
+
 
 const CLIENT_ID = uuid()
 
@@ -15,6 +17,23 @@ class SignUpGraphQL extends React.Component {
   // define some state to hold the data returned from the API
   state = {
     type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address:'', users: []
+  }
+  handleSubmit = (event) => {
+    /* Write to a json file attempt
+    let account = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    let data = JSON.stringify(account);
+    fs.writeFileSync('login.json', data);*/
+    //console.log('big info dump: ' + this.state.fname + ' ' + this.state.lname + ' ' + this.state.email + ' ' + this.state.password + ' ' + this.state.cpassword + ' ' + this.state.cellphone + ' ' + this.state.address);
+    // db.query('SELECT * FROM UserInfo').spread(function (users) {
+    //   console.log('Hello users', users);
+    // });
+
+    this.props.history.push('/Account');
+    //testconnection();
+    event.preventDefault(); //not sure what this does
   }
 
   // execute the query in componentDidMount
@@ -45,6 +64,8 @@ class SignUpGraphQL extends React.Component {
     } catch (err) {
       console.log('error creating user...', err)
     }
+    this.props.history.push('/Account');
+    //testconnection();
   }
   onChange = (event) => {
     this.setState({
@@ -54,49 +75,93 @@ class SignUpGraphQL extends React.Component {
   render() {
     return (
       <>
-        <h1>Sign Up</h1>
-        <input
-          name='firstName'
-          onChange={this.onChange}
-          value={this.state.firstName}
-          placeholder='first name'
-        />
-        <input
-          name='lastName'
-          onChange={this.onChange}
-          value={this.state.lastName}
-          placeholder='last name'
-        />
-        <input
-          name='email'
-          onChange={this.onChange}
-          value={this.state.email}
-          placeholder='email'
-        />
-        <input
-          name='password'
-          onChange={this.onChange}
-          value={this.state.password}
-          placeholder='password'
-        />
-        <input
-          name='cellphone'
-          onChange={this.onChange}
-          value={this.state.cellphone}
-          placeholder='cellphone'
-        />
-        <input
-          name='address'
-          onChange={this.onChange}
-          value={this.state.address}
-          placeholder='address'
-        />
-
-
-        <button onClick={this.createUser}>Create User</button>
+        <div>
+        <form onSubmit={this.handleSubmit}>
+          <h1>Sign Up</h1>
+            <label>
+              First Name:
+              <br></br>
+              <input 
+                type="text"
+                name='firstName' 
+                onChange ={this.onChange}
+                value={this.state.firstName}
+              />        
+              </label>
+            <br></br>
+            <br></br>
+            <label>
+                Last Name:
+                <br></br>
+                <input 
+                    type="text"  
+                    name='lastName'
+                    onChange={this.onChange}
+                    value={this.state.lastName}
+                /> 
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+                Email:
+                <br></br>
+                <input  
+                    type= "email" 
+                    name='email'
+                    onChange={this.onChange}
+                    value={this.state.email}
+                /> 
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+                Password:
+                <br></br>
+                <input  
+                    type='password' 
+                    name='password'
+                    onChange={this.onChange}
+                    value={this.state.password}
+                /> 
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+                Confirm Password:
+                <br></br>
+                <input type='password' /> 
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+                Cellphone:
+                <br></br>
+                <input    
+                    type= "text"
+                    name='cellphone'
+                    onChange={this.onChange}
+                    value={this.state.cellphone}
+                /> 
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+                Address:
+                <br></br>
+                <input 
+                    type="text" 
+                    name='address'
+                    onChange={this.onChange}
+                    value={this.state.address}
+                />
+            </label>
+            <br></br>
+            <br></br>
+            <button onClick={this.createUser}>Create User</button>            </form>
+        </div>
       </>
     )
   }
 }
 
-export default SignUpGraphQL
+export default withRouter(SignUpGraphQL)
