@@ -157,7 +157,8 @@ class SignUpGraphQL extends React.Component {
             </label>
             <br></br>
             <br></br>
-            <button onClick={this.createUser}>Create User</button>            </form>
+            <button onClick={this.createUser}>Create My Account</button>            
+            </form>
         </div>
       </>
     )
