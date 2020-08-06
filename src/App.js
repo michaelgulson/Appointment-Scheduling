@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account } from './components/index'
+import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin } from './components/index'
 
 
 const App = () => (
@@ -16,6 +16,9 @@ const App = () => (
       <Route path="/search" component={Search} />
       <Route path="/signup" component={SignUp} />
       <Route path="/account" component={Account} />
+      <Route path="/userlist" component={UserList} />
+      <Route path="/admin" component={Admin} />
+
     </Switch>
   </React.Fragment>
 );

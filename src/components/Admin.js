@@ -1,20 +1,18 @@
 import React from 'react';
 import Header from './Header';
-import SignUpLogic from './SignUpLogic'
-import SignUpGraphQL from './Sign Up-graphql'
-
+import UserList from './UserList'
 // const SignUp = () => (
 //         <div>
 //             <Header />
 //             <SignUpLogic />
 //         </div>
 // )
-const SignUp = () => (
+const Admin = () => (
         <div>
             <Header />
-            <SignUpGraphQL />
+            <UserList />
         </div>
 )
 
 
-export default SignUp
+export default Admin

@@ -5,11 +5,16 @@ import Header from './Header';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 //import globalize from 'globalize'
+
+import UserList from './UserList'
 import events from './events' 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment)
 //const localizer = globalizeLocalizer(globalize)
+
+
+
 
 
 
