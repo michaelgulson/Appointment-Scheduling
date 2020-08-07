@@ -3,7 +3,7 @@ import React from 'react';
 
 import { API, graphqlOperation } from 'aws-amplify'
 // import uuid to create a unique client ID
-import uuid from 'uuid/v4'
+//import uuid from 'uuid/v4'
 
 import { listUsers as ListUsers } from '../graphql/queries'
 // import the mutation
@@ -11,7 +11,7 @@ import { createUser as CreateUser } from '../graphql/mutations'
 import { Link, withRouter } from 'react-router-dom'
 
 
-const CLIENT_ID = uuid()
+//const CLIENT_ID = uuid()
 
 class SignUpGraphQL extends React.Component {
   // define some state to hold the data returned from the API
