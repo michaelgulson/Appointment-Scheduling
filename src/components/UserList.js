@@ -25,21 +25,31 @@ class UserList extends React.Component {
   render() {
     return (
       <>
+        <table>
+            <tr>
+              <th>User Type</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Cellphone</th>
+              <th>Address</th>
+        </tr>      
         {
-          this.state.users.map((user, index) => (
-            <div key={index}>
-                <p>
-                    User Type: {user.type}<br></br>
-                    First Name: {user.firstName}<br></br>
-                    Last Name: {user.lastName}<br></br>
-                    Email: {user.email}<br></br>
-                    Password: {user.password}<br></br> 
-                    Cellphone: {user.cellphone}<br></br>
-                    Address: {user.address}                                                                   
-                </p>
-            </div>
+            this.state.users.map((user, index) => (
+
+            <tr key={index}>
+              <td>{user.type}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.password}</td>
+              <td>{user.cellphone}</td>
+              <td>{user.address}</td>
+            </tr>
           ))
         }
+        </table>
       </>
     )
   }
