@@ -14,7 +14,7 @@ class UserList extends React.Component {
    async componentDidMount() {
     try {
       const UserData = await API.graphql(graphqlOperation(ListUsers))
-      console.log('talkData:', UserData)
+      console.log('userData:', UserData)
       this.setState({
         users: UserData.data.listUsers.items
       })

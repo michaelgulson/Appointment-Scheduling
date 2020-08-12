@@ -8,3 +8,14 @@ type User @model {
   cellphone: String
   address: String
 }
+
+type Event @model {
+  id: ID!
+  client: String!
+  employee: String!
+  service: String
+  date: AWSDate
+  startTime: AWSTime
+  endTime: AWSTime
+  color: String
+}
