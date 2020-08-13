@@ -27,12 +27,12 @@ class MyAccount extends React.Component{
   async  FetchEventData() {
     try {
       const EventData = await API.graphql(graphqlOperation(ListEvents))
-      console.log('EventData:', EventData)
+      //console.log('EventData:', EventData)
       this.setState({
         event: EventData.data.listEvents.items
       })
     } catch (err) {
-      console.log('error fetching users...', err)
+      console.log('error fetching events...', err)
     }
   };
 
