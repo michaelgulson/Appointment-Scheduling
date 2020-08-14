@@ -31,7 +31,7 @@ class ScheduleAppointment extends React.Component {
     }*/
     createEvent = async() => {
       const { client, employee, service, date, startTime, endTime, color } = this.state
-      if ( client === '' || employee === '' || service === '' || date === '' || startTime === '' || endTime === '' || color === '') return
+      if ( client === '' || date === '' || startTime === '' || endTime === '' ) return
   
       const event = { client, employee, service, date, startTime, endTime, color }
       //const users = [...this.state.users, user]
@@ -91,6 +91,32 @@ class ScheduleAppointment extends React.Component {
                       name='endTime'
                       onChange={this.onChange}
                       value={this.state.endTime}
+                  /> 
+              </label>
+              <br></br>
+              <br></br>
+              <label>
+                  Service:
+                  <br></br>
+                  <input  
+                      type= "text" 
+                      name='service'
+                      onChange={this.onChange}
+                      value={this.state.service}
+                  /> 
+              </label>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <label>
+                  Employee:
+                  <br></br>
+                  <input  
+                      type= "text" 
+                      name='employee'
+                      onChange={this.onChange}
+                      value={this.state.employee}
                   /> 
               </label>
               <br></br>

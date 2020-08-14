@@ -12,7 +12,7 @@ type User @model {
 type Event @model {
   id: ID!
   client: String!
-  employee: String!
+  employee: String
   service: String
   date: AWSDate
   startTime: AWSTime
