@@ -14,8 +14,8 @@ type Event @model {
   client: String!
   employee: String
   service: String
-  date: AWSDate
-  startTime: AWSTime
-  endTime: AWSTime
+  date: String
+  startTime: String
+  endTime: String
   color: String
 }

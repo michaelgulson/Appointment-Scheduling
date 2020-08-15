@@ -43,7 +43,7 @@ class ScheduleAppointment extends React.Component {
         await API.graphql(graphqlOperation(CreateEvent, { input: event }))
         console.log('item created!')
       } catch (err) {
-        console.log('error creating user...', err)
+        console.log('error creating event...', err)
       }
       this.props.history.push('/Account');
       //testconnection();
