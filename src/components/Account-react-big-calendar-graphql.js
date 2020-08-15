@@ -30,6 +30,7 @@ class MyAccount extends React.Component{
     try {
       EventData1 = await API.graphql(graphqlOperation(ListEvents))
       events1 = EventData1.data.listEvents.items
+      console.log(events1);
       const EventData = await API.graphql(graphqlOperation(ListEvents))
       //console.log('EventData:', EventData)
       this.setState({
@@ -61,21 +62,23 @@ class MyAccount extends React.Component{
               <td>{events1.startTime}</td>
               <td>{events1.endTime}</td>
               <td>{events1.color}</td>
-            </tr>
-        {
-            this.state.events.map((event, index) => (
+            </tr> 
+           
+            {
+              this.state.events.map((event, index) => (
 
-            <tr key={index}>
-              <td>{event.client}</td>
-              <td>{event.employee}</td>
-              <td>{event.service}</td>
-              <td>{event.date}</td>
-              <td>{event.startTime}</td>
-              <td>{event.endTime}</td>
-              <td>{event.color}</td>
-            </tr>
-          ))
-        }   
+              <tr key={index}>
+                <td>{event.client}</td>
+                <td>{event.employee}</td>
+                <td>{event.service}</td>
+                <td>{event.date}</td>
+                <td>{event.startTime}</td>
+                <td>{event.endTime}</td>
+                <td>{event.color}</td>
+              </tr>
+            ))
+            }  
+ 
         
         </table>
       </>
