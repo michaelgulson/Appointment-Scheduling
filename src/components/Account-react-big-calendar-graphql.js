@@ -18,6 +18,8 @@ import { listEvents as ListEvents } from '../graphql/queries'
 const localizer = momentLocalizer(moment)
 //const localizer = globalizeLocalizer(globalize)
 
+var EventData1;
+var events1 = [];
 
 class MyAccount extends React.Component{
   state = {
@@ -26,6 +28,8 @@ class MyAccount extends React.Component{
 
   async  componentDidMount() {
     try {
+      EventData1 = await API.graphql(graphqlOperation(ListEvents))
+      events1 = EventData1.data.listEvents.items
       const EventData = await API.graphql(graphqlOperation(ListEvents))
       //console.log('EventData:', EventData)
       this.setState({
@@ -41,31 +45,42 @@ class MyAccount extends React.Component{
       <>
       <table>
             <tr>
-              <th>User Type</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Cellphone</th>
-              <th>Address</th>
+              <th>Client</th>
+              <th>Employee</th>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Color</th>
         </tr>      
+            <tr>
+              <td>{events1.client}</td>
+              <td>{events1.employee}</td>
+              <td>{events1.service}</td>
+              <td>{events1.date}</td>
+              <td>{events1.startTime}</td>
+              <td>{events1.endTime}</td>
+              <td>{events1.color}</td>
+            </tr>
         {
-            this.state.users.map((user, index) => (
+            this.state.events.map((event, index) => (
 
             <tr key={index}>
-              <td>{user.type}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td>{user.password}</td>
-              <td>{user.cellphone}</td>
-              <td>{user.address}</td>
+              <td>{event.client}</td>
+              <td>{event.employee}</td>
+              <td>{event.service}</td>
+              <td>{event.date}</td>
+              <td>{event.startTime}</td>
+              <td>{event.endTime}</td>
+              <td>{event.color}</td>
             </tr>
           ))
-        }
+        }   
+        
         </table>
-      <>
+      </>
     )
+
   }
 
 }
@@ -89,11 +104,11 @@ const MyCalendar = props => (
 )
 
 const Account = () => (
-    <div>
+    <>
         <Header />
         <MyCalendar />
         <MyAccount />
-    </div>
+    </>
 )
 
 
