@@ -23,7 +23,8 @@ var events1 = [];
 
 class MyAccount extends React.Component{
   state = {
-    events:[]
+    events:[],
+    eventsForCalendar: []
   }
 
   async  componentDidMount() {
@@ -60,8 +61,9 @@ class MyAccount extends React.Component{
     console.log(this.state.events , 'events')
     return(
       <>
-        
-        <Calendar
+        {
+          this.state.eventsForCalendar.length > 0 ?
+          <Calendar
           localizer={localizer}
           events={this.state.eventsForCalendar}
           startAccessor="start"
@@ -73,6 +75,9 @@ class MyAccount extends React.Component{
             },
           })}
         />
+        :
+        null
+        }
       {/*<table>
             <tr>
               <th>Client</th>

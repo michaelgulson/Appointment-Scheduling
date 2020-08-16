@@ -64,7 +64,7 @@ class MyAccount extends React.Component{
           ))
         }
         </table>
-      <>
+      </>
     )
   }
 
