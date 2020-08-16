@@ -32,9 +32,23 @@ class MyAccount extends React.Component{
       events1 = EventData1.data.listEvents.items
       console.log(events1);
       const EventData = await API.graphql(graphqlOperation(ListEvents))
+      
+      let eventsForCalendar = []
+      
+      for (let i in EventData.data.listEvents.items) {
+        	let givenEvent = EventData.data.listEvents.items[i]
+           let event = {
+              title: givenEvent.client + " meeting with " + givenEvent.employee, 
+              start: moment(givenEvent.date + " " + givenEvent.startTime),
+              end: moment(givenEvent.date + " " + givenEvent.endTime),
+            }
+           eventsForCalendar.push(event)
+      }
+      
       //console.log('EventData:', EventData)
       this.setState({
-        events: EventData.data.listEvents.items
+        events: EventData.data.listEvents.items,
+        eventsForCalendar: eventsForCalendar
       })
     } catch (err) {
       console.log('error fetching events...', err)
@@ -46,7 +60,20 @@ class MyAccount extends React.Component{
     console.log(this.state.events , 'events')
     return(
       <>
-      <table>
+        
+        <Calendar
+          localizer={localizer}
+          events={this.state.eventsForCalendar}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }}
+          eventPropGetter={event => ({
+            style: {
+              backgroundColor: event.color,
+            },
+          })}
+        />
+      {/*<table>
             <tr>
               <th>Client</th>
               <th>Employee</th>
@@ -89,35 +116,25 @@ class MyAccount extends React.Component{
  
         
         </table>
-      </>
+      
+  */}
+  </>
     )
 
   }
 
 }
 
-const MyCalendar = props => (
-  <>
-    <Calendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 500 }}
-      eventPropGetter={event => ({
-        style: {
-          backgroundColor: event.color,
-        },
-      })}
-    />
-  </>
+// const MyCalendar = props => (
 
-)
+
+// )
 
 const Account = () => (
     <>
         <Header />
-        <MyCalendar />
+        {//<MyCalendar />
+        }
         <MyAccount />
     </>
 )
