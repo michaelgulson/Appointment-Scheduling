@@ -42,6 +42,8 @@ class MyAccount extends React.Component{
   };
 
   render(){
+    console.log(events1)
+    console.log(this.state.events , 'events')
     return(
       <>
       <table>
@@ -53,16 +55,22 @@ class MyAccount extends React.Component{
               <th>Start Time</th>
               <th>End Time</th>
               <th>Color</th>
-        </tr>      
+        </tr>
+        {     
+            events1.length > 0 ? 
             <tr>
-              <td>{events1.client}</td>
-              <td>{events1.employee}</td>
-              <td>{events1.service}</td>
-              <td>{events1.date}</td>
-              <td>{events1.startTime}</td>
-              <td>{events1.endTime}</td>
-              <td>{events1.color}</td>
-            </tr> 
+            <td>{events1[0].client}</td>
+            <td>{events1[0].employee}</td>
+            <td>{events1[0].service}</td>
+            <td>{events1[0].date}</td>
+            <td>{events1[0].startTime}</td>
+            <td>{events1[0].endTime}</td>
+            <td>{events1[0].color}</td>
+          </tr>
+          :
+          null
+        }
+            
            
             {
               this.state.events.map((event, index) => (
