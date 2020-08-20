@@ -58,7 +58,7 @@ class MyAccount extends React.Component{
 
   render(){
     console.log(events1)
-    console.log(this.state.events , 'events')
+    console.log(this.state.eventsForCalendar , 'eventsForCalendar')
     return(
       <>
         {
