@@ -1,7 +1,7 @@
 // src/App.js
 import React from 'react';
 
-import { API, graphqlOperation } from 'aws-amplify'
+import { API, graphqlOperation, Auth } from 'aws-amplify'
 // import uuid to create a unique client ID
 //import uuid from 'uuid/v4'
 
@@ -9,6 +9,7 @@ import { listUsers as ListUsers } from '../graphql/queries'
 // import the mutation
 import { createUser as CreateUser } from '../graphql/mutations'
 import { Link, withRouter } from 'react-router-dom'
+
 
 
 //const CLIENT_ID = uuid()
@@ -49,23 +50,36 @@ class SignUpGraphQL extends React.Component {
     }
   }
   createUser = async() => {
-    const { type, firstName, lastName, email, password, cellphone, address } = this.state
-    if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
+    // const { type, firstName, lastName, email, password, cellphone, address } = this.state
+    // if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
 
-    const user = { type, firstName, lastName, email, password, cellphone, address}
-    const users = [...this.state.users, user]
-    this.setState({
-      users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
-    })
+    // const user = { type, firstName, lastName, email, password, cellphone, address}
+    // const users = [...this.state.users, user]
+    // this.setState({
+    //   users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
+    // })
 
-    try {
-      await API.graphql(graphqlOperation(CreateUser, { input: user }))
-      console.log('item created!')
-    } catch (err) {
-      console.log('error creating user...', err)
-    }
-    this.props.history.push('/Account');
+    // try {
+    //   await API.graphql(graphqlOperation(CreateUser, { input: user }))
+    //   console.log('item created!')
+    // } catch (err) {
+    //   console.log('error creating user...', err)
+    // }
+    // this.props.history.push('/Account');
     //testconnection();
+    try {
+        const { user } = await Auth.signUp({
+            username: this.state.email,
+            password: this.state.password,
+            attributes: {
+              phone_number: this.state.cellphone   // optional - E.164 number convention
+                // other custom attributes 
+            }
+        });
+        console.log(user);
+    } catch (error) {
+        console.log('error signing up:', error);
+    }
   }
   onChange = (event) => {
     this.setState({
