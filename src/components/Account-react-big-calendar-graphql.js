@@ -40,8 +40,8 @@ class MyAccount extends React.Component{
         	let givenEvent = EventData.data.listEvents.items[i]
            let event = {
               title: givenEvent.client + " meeting with " + givenEvent.employee, 
-              start: moment(givenEvent.date + " " + givenEvent.startTime),
-              end: moment(givenEvent.date + " " + givenEvent.endTime),
+              start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),
+              end: moment(givenEvent.date + " " + givenEvent.endTime).toDate(),
             }
            eventsForCalendar.push(event)
       }
@@ -58,6 +58,12 @@ class MyAccount extends React.Component{
 
   render(){
     console.log(events1)
+    // let sampleEvents = [{
+    //   title: "test", 
+    //   start: moment("8/20/2020" + " " + "5:40 pm").toDate(),
+    //   end: moment("8/20/2020" + " " + "6:40 pm").toDate(),
+    // }]
+    // console.log(sampleEvents, 'sampleEvents')
     console.log(this.state.eventsForCalendar , 'eventsForCalendar')
     return(
       <>
