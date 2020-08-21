@@ -77,9 +77,28 @@ class SignUpGraphQL extends React.Component {
             }
         });
         console.log(user);
+      const { type, firstName, lastName, email, password, cellphone, address } = this.state
+      if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
+
+      const dbuser = { type, firstName, lastName, email, password, cellphone, address}
+      const users = [...this.state.users, dbuser]
+      this.setState({
+        users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
+      })
+
+      try {
+        await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
+        console.log('item created!')
+      } catch (err) {
+        console.log('error creating user...', err)
+      }
+      this.props.history.push('/Account');
+      //testconnection();
     } catch (error) {
         console.log('error signing up:', error);
+        alert("Oops! Something went wrong: " + error.message)
     }
+    
   }
   onChange = (event) => {
     this.setState({
