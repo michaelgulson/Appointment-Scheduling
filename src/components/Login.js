@@ -2,6 +2,15 @@
 import React from 'react';
 import '../App.css'
 import { Link, withRouter } from 'react-router-dom'
+import { Auth } from 'aws-amplify';
+
+// async function signIn() {
+//     try {
+//         const user = await Auth.signIn(username, password);
+//     } catch (error) {
+//         console.log('error signing in', error);
+//     }
+// }
 
 //fileio
 //const fs = require('fs');
@@ -18,7 +27,7 @@ class Login extends React.Component {
 
   handleEmailChange(event) {    this.setState({email: event.target.value, password: this.state.password});  }
   handlePasswordChange(event){  this.setState({email: this.state.email, password: event.target.value})}
-  handleSubmit(event) {
+  async handleSubmit(event) {
     /* Write to a json file attempt
     let account = {
       email: this.state.email,
@@ -26,12 +35,19 @@ class Login extends React.Component {
     };
     let data = JSON.stringify(account);
     fs.writeFileSync('login.json', data);*/
-
+     try {
+       const user = await Auth.signIn(this.state.email, this.state.password);
+       this.props.history.push('/Account');
+      } catch (error) {
+        console.log('error signing in', error);
+        this.props.history.push('/');
+        alert("Oops! Something went wrong: " + error.message)
+      }
     //database call
     event.preventDefault();
-    alert('email and password: ' + this.state.email + ' ' + this.state.password);
+    //alert('email and password: ' + this.state.email + ' ' + this.state.password);
     console.log('email and password: ' + this.state.email + ' ' + this.state.password);
-    this.props.history.push('/Account');
+    //this.props.history.push('/Account');
      //not sure what this does
   }
 

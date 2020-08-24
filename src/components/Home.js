@@ -4,7 +4,6 @@ import Header from './Header'
 import Login from './/Login'
 
 
-
   const Home = () => (
     <div>
     <Header />    
