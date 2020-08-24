@@ -9,9 +9,9 @@ import { listUsers as ListUsers } from '../graphql/queries'
 // import the mutation
 import { createUser as CreateUser } from '../graphql/mutations'
 import { Link, withRouter } from 'react-router-dom'
-
-
-
+import {Field, Formik, Form} from "formik"
+import TextField from '@material-ui/core/TextField';
+import { Button }  from '@material-ui/core'
 //const CLIENT_ID = uuid()
 
 class SignUpGraphQL extends React.Component {
@@ -109,9 +109,97 @@ class SignUpGraphQL extends React.Component {
   }
   render() {
     return (
-      <>
-        <div>
-        <form onSubmit={this.handleSubmit}>
+        <Formik
+        initialValues={{
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            cellphone: "+1",
+            address: ""
+        }}
+        onSubmit={(values, { setSubmitting}) =>{
+          setTimeout(() => {
+            setSubmitting(false);
+            alert(JSON.stringify(values, null, 2));
+          }, 500);
+          this.setState(values)/* 
+          this.state.firstName = values.firstName
+          this.state.lastName = values.lastName
+          this.state.email = values.email
+          this.state.password = values.password
+          this.state.cellphone = values.cellphone
+          this.state.address = values.address */
+          console.log(this.state)
+          this.createUser()
+          this.handleSubmit()
+        }}>
+          {({ values, isSubmitting }) => (
+          <Form>
+          <h1>Sign Up</h1>
+          <Field
+            as={TextField}
+            name={"firstName"}
+            type="input"
+            required={true}
+            label="First Name"
+            value = {values.firstName}
+          /><br></br>
+          <Field
+            as={TextField}
+            name={"lastName"}
+            required={true}
+            type="input"
+            label="Last Name"
+            value = {values.lastName}
+          /><br></br>
+          <Field
+            as={TextField}
+            name={"email"}
+            required={true}
+            type="email"
+            label=" Email"
+            value = {values.email}
+          /><br></br>
+          <Field
+            as={TextField}
+            name={"password"}
+            required={true}
+            type="password"
+            InputProps={{ inputProps: { minlength: 8} }}          
+            label="Password"
+            value = {values.password}
+          /><br></br>
+          <Field
+            as={TextField}
+            name={"cellphone"}     
+            required={true}
+            type="tel"
+            label="Cellphone"
+            value = {values.cellphone}
+          /><br></br>
+          <Field
+            as={TextField}
+            name={"address"}
+            required={true}
+            type="input"
+            label="Address"
+            value = {values.address}
+          /><br></br>
+
+
+          <br />
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={isSubmitting}
+            type="submit"
+          >
+            Create My Account
+            </Button>
+          </Form>)}
+        </Formik>
+        /* <form onSubmit={this.handleSubmit}>
           <h1>Sign Up</h1>
             <label>
               First Name:
@@ -193,9 +281,7 @@ class SignUpGraphQL extends React.Component {
             <br></br>
             <br></br>
             <button onClick={this.createUser}>Create My Account</button>            
-            </form>
-        </div>
-      </>
+            </form> */
     )
   }
 }
