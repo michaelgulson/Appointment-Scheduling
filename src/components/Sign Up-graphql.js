@@ -91,12 +91,14 @@ class SignUpGraphQL extends React.Component {
         console.log('item created!')
       } catch (err) {
         console.log('error creating user...', err)
+        this.props.history.push('/');
       }
       this.props.history.push('/Account');
       //testconnection();
     } catch (error) {
         console.log('error signing up:', error);
         alert("Oops! Something went wrong: " + error.message)
+        this.props.history.push('/');
     }
     
   }

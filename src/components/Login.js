@@ -28,6 +28,8 @@ class Login extends React.Component {
   handleEmailChange(event) {    this.setState({email: event.target.value, password: this.state.password});  }
   handlePasswordChange(event){  this.setState({email: this.state.email, password: event.target.value})}
   async handleSubmit(event) {
+    event.preventDefault();
+
     /* Write to a json file attempt
     let account = {
       email: this.state.email,
@@ -44,7 +46,6 @@ class Login extends React.Component {
         alert("Oops! Something went wrong: " + error.message)
       }
     //database call
-    event.preventDefault();
     //alert('email and password: ' + this.state.email + ' ' + this.state.password);
     console.log('email and password: ' + this.state.email + ' ' + this.state.password);
     //this.props.history.push('/Account');
