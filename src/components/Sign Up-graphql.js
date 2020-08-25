@@ -49,6 +49,17 @@ class SignUpGraphQL extends React.Component {
       console.log('error fetching users...', err)
     }
   }
+  formatPhoneNumber = (number) => {
+    if (number.substring(0,2)=="+1"){
+      return number
+    }
+    else if (number.substring(0,1)=="1"){
+      return "+" + number
+    }
+    else{
+      return "+1" + number
+    }
+  }
   createUser = async() => {
     // const { type, firstName, lastName, email, password, cellphone, address } = this.state
     // if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
@@ -130,6 +141,9 @@ class SignUpGraphQL extends React.Component {
           this.state.password = values.password
           this.state.cellphone = values.cellphone
           this.state.address = values.address */
+          this.setState({
+            cellphone: this.formatPhoneNumber(this.state.cellphone)
+          })
           console.log(this.state)
           this.createUser()
           this.handleSubmit()
@@ -174,6 +188,7 @@ class SignUpGraphQL extends React.Component {
             as={TextField}
             name={"cellphone"}     
             required={true}
+            InputProps={{ inputProps: { minlength: 10} }}
             type="tel"
             label="Cellphone"
             value = {values.cellphone}
