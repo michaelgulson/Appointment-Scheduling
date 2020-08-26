@@ -126,7 +126,7 @@ class SignUpGraphQL extends React.Component {
             lastName: "",
             email: "",
             password: "",
-            cellphone: "+1",
+            cellphone: "",
             address: ""
         }}
         onSubmit={(values, { setSubmitting}) =>{
@@ -134,13 +134,7 @@ class SignUpGraphQL extends React.Component {
             setSubmitting(false);
             alert(JSON.stringify(values, null, 2));
           }, 500);
-          this.setState(values)/* 
-          this.state.firstName = values.firstName
-          this.state.lastName = values.lastName
-          this.state.email = values.email
-          this.state.password = values.password
-          this.state.cellphone = values.cellphone
-          this.state.address = values.address */
+          this.setState(values)
           this.setState({
             cellphone: this.formatPhoneNumber(this.state.cellphone)
           })
@@ -188,7 +182,7 @@ class SignUpGraphQL extends React.Component {
             as={TextField}
             name={"cellphone"}     
             required={true}
-            InputProps={{ inputProps: { minlength: 10} }}
+            InputProps={{ inputProps: { minlength: 10, maxlength:10 } }}
             type="tel"
             label="Cellphone"
             value = {values.cellphone}
