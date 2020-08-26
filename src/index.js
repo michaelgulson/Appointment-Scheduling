@@ -6,8 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
+import {createStore} from 'redux'
+import {userReducer} from './components/Redux'
+import {Provider} from 'react-redux'
+
 Amplify.configure(config)
 
+const store = createStore(userReducer);
 //import pg from 'pg'
 //import Modal from 'react-modal';
 /* const { Client } = require('pg');
@@ -34,9 +39,12 @@ const sequelize = new Sequelize('mydb', 'master', 'Va11eyF0rge', {
 */
 
 ReactDOM.render(
+
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store = {store}>
+        <App />
+      </Provider>  
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

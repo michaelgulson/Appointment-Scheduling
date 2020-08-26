@@ -10,8 +10,15 @@ import {
 } from "@reach/menu-button";
 import "@reach/menu-button/styles.css";
 
+import { userContext } from './UserContext';
 
-const Header = () => (
+class Header extends React.Component{
+  static contextType = userContext;
+
+
+
+  render (){
+    return(
     <div>
       <header>
         <div class="row">
@@ -34,24 +41,33 @@ const Header = () => (
                 <Link to="/volunteer">Volunteer</Link>
           </div>
           <div class = "column-8">
-          <Menu>
-            <MenuButton class="dropbtn">
-              Account <span aria-hidden>▾</span>
-            </MenuButton>
-            <MenuList>
-              <MenuLink as="a" href="/signup">
-                Sign Up
-              </MenuLink>
-              <MenuLink as="a" href="/">
-                Log In
-              </MenuLink>
-            </MenuList>
-          </Menu>                 
+          <userContext.Consumer>
+            {({user, toggleUser}) =>
+            (
+              <Menu>
+              <MenuButton class="dropbtn">
+                {user} <span aria-hidden>▾</span>
+              </MenuButton>
+              <MenuList>
+                <MenuLink as="a" href="/signup">
+                  Sign Up
+                </MenuLink>
+                <MenuLink as="a" href="/">
+                  Log In
+                </MenuLink>
+              </MenuList>
+            </Menu>
+          )
+          }
+          </userContext.Consumer>
+        
           </div>
         </div>        
       </header>
     </div>
-  );
+    );
+  }
+}
 
 
 

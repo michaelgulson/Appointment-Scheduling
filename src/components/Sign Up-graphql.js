@@ -9,10 +9,20 @@ import { listUsers as ListUsers } from '../graphql/queries'
 // import the mutation
 import { createUser as CreateUser } from '../graphql/mutations'
 import { Link, withRouter } from 'react-router-dom'
-
+import { userContext } from './UserContext';
+//import {useDispatch} from 'react-redux'
+//import {login} from './Redux';
 
 
 //const CLIENT_ID = uuid()
+// function SignUpGraphQLRedux(username){
+//   const dispatch = useDispatch();
+//   const dispatch1 = dispatch(login(username));
+//   return(
+//     <div></div>
+//   );
+// }
+
 
 class SignUpGraphQL extends React.Component {
   // define some state to hold the data returned from the API
@@ -67,6 +77,7 @@ class SignUpGraphQL extends React.Component {
     // }
     // this.props.history.push('/Account');
     //testconnection();
+
     try {
         const { user } = await Auth.signUp({
             username: this.state.email,
@@ -89,11 +100,11 @@ class SignUpGraphQL extends React.Component {
       try {
         await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
         console.log('item created!')
+        this.props.history.push('/Account');
       } catch (err) {
         console.log('error creating user...', err)
         this.props.history.push('/');
       }
-      this.props.history.push('/Account');
       //testconnection();
     } catch (error) {
         console.log('error signing up:', error);
@@ -110,8 +121,10 @@ class SignUpGraphQL extends React.Component {
   render() {
     return (
       <>
+        <userContext.Consumer>
+        {({user, toggleUser}) =>(
         <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={() => toggleUser(this.state.email)}>
           <h1>Sign Up</h1>
             <label>
               First Name:
@@ -192,11 +205,13 @@ class SignUpGraphQL extends React.Component {
             </label>
             <br></br>
             <br></br>
-            <button onClick={this.createUser}>Create My Account</button>            
+              <button onClick={this.createUser}>Create My Account</button>      
             </form>
         </div>
+        )}
+        </userContext.Consumer>  
       </>
-    )
+    );
   }
 }
 
