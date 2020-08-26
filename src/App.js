@@ -11,10 +11,11 @@ class App extends React.Component {
   
     this.toggleUser = (email) => {
         this.setState(state => ({
-          user:
-            state.user === ''
-              ? email
-              : state.user
+          user: email
+            // state.user === ''
+            //   ? email
+            //   : state.user
+          
         }));
       };
   
