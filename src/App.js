@@ -28,7 +28,8 @@ class App extends React.Component {
     render() {
       return(
         <React.Fragment>
-          <userContext.Provider value={this.state}>
+  {//        <userContext.Provider value={this.state}>
+  }
           <Switch>
             <Route path="/" component={Home} exact />
             <Route path="/about" component={About} />
@@ -43,7 +44,8 @@ class App extends React.Component {
             <Route path="/admin" component={Admin} />
             <Route path="/appointment" component={Appointment} />
           </Switch>
-          </userContext.Provider>
+    {//      </userContext.Provider>
+    }
         </React.Fragment>
       );
     }

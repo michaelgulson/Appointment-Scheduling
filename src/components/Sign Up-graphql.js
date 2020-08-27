@@ -42,22 +42,23 @@ class SignUpGraphQL extends React.Component {
     //   console.log('Hello users', users);
     // });
 
-    this.props.history.push('/Account');
+    //this.props.history.push('/Account');
     //testconnection();
     event.preventDefault(); //not sure what this does
   }
 
   // execute the query in componentDidMount
   async componentDidMount() {
-    try {
-      const userData = await API.graphql(graphqlOperation(ListUsers))
-      console.log('userData:', userData)
-      this.setState({
-        users: userData.data.listUsers.items
-      })
-    } catch (err) {
-      console.log('error fetching users...', err)
-    }
+    // try {
+    //   const userData = await API.graphql(graphqlOperation(ListUsers))
+    //   //console.log('userData:', userData)
+    //   this.setState({
+    //     users: userData.data.listUsers.items
+    //   })
+    // } catch (err) {
+    //   console.log('error fetching users...', err)
+    // }
+    console.log(this.context);
   }
   createUser = async() => {
     // const { type, firstName, lastName, email, password, cellphone, address } = this.state
@@ -120,13 +121,16 @@ class SignUpGraphQL extends React.Component {
     })
   }
   render() {
+    //const {user} = this.context;
     return (
       <>
-        <userContext.Consumer>
-        {({user, toggleUser}) =>(
+        {//<userContext.Consumer>
+        //{({user, setUser}) =>(
+        }
         <div>
-        <form onSubmit={() => toggleUser(this.state.email)}>
-          <h1>Sign Up</h1>
+        {//form onSubmit={() => this.props.setUser(this.state.email)}>
+        }
+        <h1>Sign Up</h1>
             <label>
               First Name:
               <br></br>
@@ -206,16 +210,22 @@ class SignUpGraphQL extends React.Component {
             </label>
             <br></br>
             <br></br>
-              <button onClick={() => toggleUser(this.state.email)}>Create My Account</button>      
+              <button onClick={() => {this.props.setUser(this.state.email)}}>Create My Account</button>      
             <br></br>
-            <h2>{user}</h2>
-            </form>
+            <h2>{this.context.user}</h2>
+          {//  </form>
+          }        
         </div>
-        )}
-        </userContext.Consumer>  
-      </>
+      {//)}
+      }
+      {//</userContext.Consumer>
+      }
+      
+        </>
     );
   }
 }
+SignUpGraphQL.contextType= userContext;
+
 
 export default withRouter(SignUpGraphQL)

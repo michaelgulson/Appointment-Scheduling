@@ -41,12 +41,9 @@ class Header extends React.Component{
                 <Link to="/volunteer">Volunteer</Link>
           </div>
           <div class = "column-8">
-          <userContext.Consumer>
-            {({user, toggleUser}) =>
-            (
               <Menu>
               <MenuButton class="dropbtn">
-                {user} <span aria-hidden>▾</span>
+                {this.context.user} <span aria-hidden>▾</span>
               </MenuButton>
               <MenuList>
                 <MenuLink as="a" href="/signup">
@@ -56,11 +53,7 @@ class Header extends React.Component{
                   Log In
                 </MenuLink>
               </MenuList>
-            </Menu>
-          )
-          }
-          </userContext.Consumer>
-        
+            </Menu>        
           </div>
         </div>        
       </header>
@@ -68,6 +61,8 @@ class Header extends React.Component{
     );
   }
 }
+
+Header.contextType= userContext;
 
 
 
