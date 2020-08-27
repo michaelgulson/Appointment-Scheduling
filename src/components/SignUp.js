@@ -13,26 +13,6 @@ import { render } from '@testing-library/react';
 //         </div>
 // )
 class SignUp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: 'user',
-            //setUser: this.setUser,
-          };
-
-
-        this.setUser = (email) => {
-          this.setState(state => ({
-            user: email
-              // state.user === ''
-              //   ? email
-              //   : state.user
-            
-          }));
-          console.log('set user');
-        };
-    }    
-    
         // State also contains the updater function so it will    // be passed down into the context provider    
 
       
@@ -44,10 +24,8 @@ class SignUp extends React.Component {
         
         return(
             <div>
-                <userContext.Provider value={this.state}>
                 <Header/>
-                <SignUpGraphQL setUser={this.setUser} />
-                </userContext.Provider>
+                <SignUpGraphQL setUser={this.props.setUser} />
             </div>
         );
         }
