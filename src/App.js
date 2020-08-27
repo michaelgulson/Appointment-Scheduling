@@ -8,41 +8,44 @@ import { userContext } from './components/UserContext';
 class App extends React.Component {
   constructor(props) {
     super(props);
-  
-    this.toggleUser = (email) => {
-        this.setState(state => ({
-          user:
-            state.user === ''
-              ? email
-              : state.user
-        }));
+    this.state = {
+        user: 'user',
+        //setUser: this.setUser,
       };
-  
-      // State also contains the updater function so it will    // be passed down into the context provider    
-      this.state = {
-        user: '',
-        toggleUser: this.toggleUser   
-      };
-    }
+
+
+    this.setUser = (email) => {
+      this.setState(state => ({
+        user: email
+          // state.user === ''
+          //   ? email
+          //   : state.user
+        
+      }));
+      console.log('set user');
+    };
+}  
     render() {
       return(
         <React.Fragment>
-          <userContext.Provider value={this.state}>
+        <userContext.Provider value={this.state}>
+  
           <Switch>
-            <Route path="/" component={Home} exact />
+            <Route path="/" render={() => <Home setUser={this.setUser}/>} exact />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             <Route path="/services" component={Services} />
             <Route path="/jobs" component={Jobs} />
             <Route path="/volunteer" component={Volunteer} />
             <Route path="/search" component={Search} />
-            <Route path="/signup" component={SignUp} />
+            <Route path="/signup" render={() => <SignUp setUser={this.setUser}/>} />
             <Route path="/account" component={Account} />
             <Route path="/userlist" component={UserList} />
             <Route path="/admin" component={Admin} />
             <Route path="/appointment" component={Appointment} />
           </Switch>
-          </userContext.Provider>
+         </userContext.Provider>
+    
         </React.Fragment>
       );
     }

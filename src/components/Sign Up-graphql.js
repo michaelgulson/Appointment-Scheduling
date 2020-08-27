@@ -40,22 +40,23 @@ class SignUpGraphQL extends React.Component {
     //   console.log('Hello users', users);
     // });
 
-    this.props.history.push('/Account');
+    //this.props.history.push('/Account');
     //testconnection();
     event.preventDefault(); //not sure what this does
   }
 
   // execute the query in componentDidMount
   async componentDidMount() {
-    try {
-      const userData = await API.graphql(graphqlOperation(ListUsers))
-      console.log('userData:', userData)
-      this.setState({
-        users: userData.data.listUsers.items
-      })
-    } catch (err) {
-      console.log('error fetching users...', err)
-    }
+    // try {
+    //   const userData = await API.graphql(graphqlOperation(ListUsers))
+    //   //console.log('userData:', userData)
+    //   this.setState({
+    //     users: userData.data.listUsers.items
+    //   })
+    // } catch (err) {
+    //   console.log('error fetching users...', err)
+    // }
+    console.log(this.context);
   }
   formatPhoneNumber = (number) => {
     if (number.substring(0,2)=="+1"){
@@ -87,40 +88,41 @@ class SignUpGraphQL extends React.Component {
     // this.props.history.push('/Account');
     //testconnection();
 
-    try {
-        const { user } = await Auth.signUp({
-            username: this.state.email,
-            password: this.state.password,
-            attributes: {
-              phone_number: this.state.cellphone   // optional - E.164 number convention
-                // other custom attributes 
-            }
-        });
-        console.log(user);
+    // try {
+        // const { user } = await Auth.signUp({
+        //     username: this.state.email,
+        //     password: this.state.password,
+        //     attributes: {
+        //       phone_number: this.state.cellphone   // optional - E.164 number convention
+        //         // other custom attributes 
+        //     }
+        // });
+        // console.log(user);
       const { type, firstName, lastName, email, password, cellphone, address } = this.state
       if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
 
       const dbuser = { type, firstName, lastName, email, password, cellphone, address}
       const users = [...this.state.users, dbuser]
-      this.setState({
-        users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
-      })
+      // this.setState({
+      //   users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
+      // })
 
-      try {
-        await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
-        console.log('item created!')
-        this.props.history.push('/Account');
-      } catch (err) {
-        console.log('error creating user...', err)
-        this.props.history.push('/');
-      }
-      //testconnection();
-    } catch (error) {
-        console.log('error signing up:', error);
-        alert("Oops! Something went wrong: " + error.message)
-        this.props.history.push('/');
-    }
-    
+    //   try {
+    //     await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
+    //     console.log('item created!')
+    //     this.props.history.push('/Account');
+    //   } catch (err) {
+    //     console.log('error creating user...', err)
+    //     this.props.history.push('/');
+    //   }
+    //   //testconnection();
+    // } catch (error) {
+    //     console.log('error signing up:', error);
+    //     alert("Oops! Something went wrong: " + error.message)
+    //     this.props.history.push('/');
+    // }
+    //this.props.history.push('/Account');
+    //console.log(user);
   }
   onChange = (event) => {
     this.setState({
@@ -128,6 +130,7 @@ class SignUpGraphQL extends React.Component {
     })
   }
   render() {
+    //const {user} = this.context;
     return (
         <Formik
         initialValues={{
@@ -303,5 +306,7 @@ class SignUpGraphQL extends React.Component {
     )
   }
 }
+SignUpGraphQL.contextType= userContext;
+
 
 export default withRouter(SignUpGraphQL)

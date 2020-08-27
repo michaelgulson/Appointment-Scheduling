@@ -37,14 +37,19 @@ class Login extends React.Component {
     };
     let data = JSON.stringify(account);
     fs.writeFileSync('login.json', data);*/
-     try {
+    /*try {
        const user = await Auth.signIn(this.state.email, this.state.password);
        this.props.history.push('/Account');
+       this.props.setUser(this.state.email);
       } catch (error) {
         console.log('error signing in', error);
         this.props.history.push('/');
         alert("Oops! Something went wrong: " + error.message)
       }
+      */     
+      this.props.setUser(this.state.email);
+      this.props.history.push('/Account');
+
     //database call
     //alert('email and password: ' + this.state.email + ' ' + this.state.password);
     console.log('email and password: ' + this.state.email + ' ' + this.state.password);
