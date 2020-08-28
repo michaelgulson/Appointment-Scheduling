@@ -12,6 +12,8 @@ import { Link, withRouter } from 'react-router-dom'
 import {Field, Formik, Form} from "formik"
 import TextField from '@material-ui/core/TextField';
 import { Button }  from '@material-ui/core'
+import { userContext } from './UserContext';
+
 //const CLIENT_ID = uuid()
 // function SignUpGraphQLRedux(username){
 //   const dispatch = useDispatch();
@@ -88,16 +90,16 @@ class SignUpGraphQL extends React.Component {
     // this.props.history.push('/Account');
     //testconnection();
 
-    // try {
-        // const { user } = await Auth.signUp({
-        //     username: this.state.email,
-        //     password: this.state.password,
-        //     attributes: {
-        //       phone_number: this.state.cellphone   // optional - E.164 number convention
-        //         // other custom attributes 
-        //     }
-        // });
-        // console.log(user);
+    try {
+        const { user } = await Auth.signUp({
+            username: this.state.email,
+            password: this.state.password,
+            attributes: {
+              phone_number: this.state.cellphone   // optional - E.164 number convention
+                // other custom attributes 
+            }
+        });
+        console.log(user);
       const { type, firstName, lastName, email, password, cellphone, address } = this.state
       if ( type === '' || firstName === '' || lastName === '' || email === '' || password === '' || cellphone === '' || address === '') return
 
@@ -107,20 +109,20 @@ class SignUpGraphQL extends React.Component {
       //   users, type: 'client', firstName: '', lastName: '', email: '', password: '', cellphone: '', address: ''
       // })
 
-    //   try {
-    //     await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
-    //     console.log('item created!')
-    //     this.props.history.push('/Account');
-    //   } catch (err) {
-    //     console.log('error creating user...', err)
-    //     this.props.history.push('/');
-    //   }
-    //   //testconnection();
-    // } catch (error) {
-    //     console.log('error signing up:', error);
-    //     alert("Oops! Something went wrong: " + error.message)
-    //     this.props.history.push('/');
-    // }
+      try {
+        await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
+        console.log('item created!')
+        this.props.history.push('/Account');
+      } catch (err) {
+        console.log('error creating user...', err)
+        this.props.history.push('/');
+      }
+      //testconnection();
+    } catch (error) {
+        console.log('error signing up:', error);
+        alert("Oops! Something went wrong: " + error.message)
+        this.props.history.push('/');
+    }
     //this.props.history.push('/Account');
     //console.log(user);
   }
@@ -153,6 +155,7 @@ class SignUpGraphQL extends React.Component {
           console.log(this.state)
           this.createUser()
           this.handleSubmit()
+          this.props.setUser(this.state.email)
         }}>
           {({ values, isSubmitting }) => (
           <Form>
