@@ -112,7 +112,7 @@ class SignUpGraphQL extends React.Component {
       try {
         await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
         console.log('item created!')
-        this.props.setUser(this.state.email);
+        this.props.setUser(this.state.firstName);
         this.props.history.push('/Account');
       } catch (err) {
         console.log('error creating user...', err)

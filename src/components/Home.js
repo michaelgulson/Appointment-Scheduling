@@ -33,8 +33,7 @@ import Login from './/Login'
         <br></br>
         <br></br>
         <br></br>
-
-      /</div>
+      </div>
     </div>
   );
 

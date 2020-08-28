@@ -2,7 +2,8 @@
 import React from 'react';
 import '../App.css'
 import { Link, withRouter } from 'react-router-dom'
-import { Auth } from 'aws-amplify';
+import {  API, graphqlOperation, Auth} from 'aws-amplify';
+import { listUsers as ListUsers } from '../graphql/queries'
 
 // async function signIn() {
 //     try {
@@ -30,25 +31,31 @@ class Login extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
 
-    /* Write to a json file attempt
-    let account = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    let data = JSON.stringify(account);
-    fs.writeFileSync('login.json', data);*/
-    /*try {
+
+    try {
        const user = await Auth.signIn(this.state.email, this.state.password);
-       this.props.history.push('/Account');
-       this.props.setUser(this.state.email);
+       try {
+        const UserData = await API.graphql(graphqlOperation(ListUsers, {
+          filter: {
+            email: {
+              eq: this.state.email
+            }
+          }
+        }))
+        console.log('userData:', UserData)
+        // this.setState({
+        //   users: UserData.data.listUsers.items
+        // })
+        this.props.setUser(UserData.data.listUsers.items[0].firstName);
+        this.props.history.push('/Account');
+      } catch (err) {
+        console.log('error fetching users...', err)
+      }
       } catch (error) {
         console.log('error signing in', error);
         this.props.history.push('/');
         alert("Oops! Something went wrong: " + error.message)
       }
-      */     
-      this.props.setUser(this.state.email);
-      this.props.history.push('/Account');
 
     //database call
     //alert('email and password: ' + this.state.email + ' ' + this.state.password);
