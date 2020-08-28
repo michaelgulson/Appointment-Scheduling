@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const userContext = React.createContext({
-    user: 'account',
+    user: 'Account',
     //setUser:  () => {},
 });
 
