@@ -42,7 +42,7 @@ class SignUpGraphQL extends React.Component {
     //   console.log('Hello users', users);
     // });
 
-    //this.props.history.push('/Account');
+    this.props.history.push('/Account');
     //testconnection();
     event.preventDefault(); //not sure what this does
   }
@@ -88,7 +88,7 @@ class SignUpGraphQL extends React.Component {
     //   console.log('error creating user...', err)
     // }
     // this.props.history.push('/Account');
-    //testconnection();
+    // testconnection();
 
     try {
         const { user } = await Auth.signUp({
@@ -112,6 +112,7 @@ class SignUpGraphQL extends React.Component {
       try {
         await API.graphql(graphqlOperation(CreateUser, { input: dbuser }))
         console.log('item created!')
+        this.props.setUser(this.state.email);
         this.props.history.push('/Account');
       } catch (err) {
         console.log('error creating user...', err)
@@ -155,7 +156,6 @@ class SignUpGraphQL extends React.Component {
           console.log(this.state)
           this.createUser()
           this.handleSubmit()
-          this.props.setUser(this.state.email)
         }}>
           {({ values, isSubmitting }) => (
           <Form>
