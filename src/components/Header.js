@@ -43,7 +43,7 @@ class Header extends React.Component{
           <div class = "column-8">
               <Menu>
               <MenuButton class="dropbtn">
-                {this.context.user} <span aria-hidden>▾</span>
+                {this.context.firstName} <span aria-hidden>▾</span>
               </MenuButton>
               <MenuList>
                 <MenuLink as="a" href="/signup">

@@ -31,14 +31,16 @@ class ScheduleAppointment extends React.Component {
       }
     }*/
     createEvent = async() => {
+      var clientId = this.context.id;
+
       const { client, employee, service, date, startTime, endTime, color } = this.state
       if ( client === '' || date === '' || startTime === '' || endTime === '' ) return
   
-      const event = { client, employee, service, date, startTime, endTime, color }
+      const event = { clientId, employee, service, date, startTime, endTime, color }
       //const users = [...this.state.users, user]
       this.setState({
-        client: 'client', employee: '', service: '', date: '', startTime: '', endTime: '', color:''
-    })
+        client: clientId, employee: '', service: '', date: '', startTime: '', endTime: '', color:''
+      })
   
       try {
         await API.graphql(graphqlOperation(CreateEvent, { input: event }))

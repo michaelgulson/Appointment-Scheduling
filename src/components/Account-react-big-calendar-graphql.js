@@ -12,6 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { API, graphqlOperation } from 'aws-amplify'
 import { listEvents as ListEvents } from '../graphql/queries'
+import { userContext } from './UserContext';
 
 
 
@@ -29,7 +30,14 @@ class MyAccount extends React.Component{
 
   async  componentDidMount() {
     try {
-      EventData1 = await API.graphql(graphqlOperation(ListEvents))
+      //EventData1 = await API.graphql(graphqlOperation(ListEvents))
+      EventData1 = await API.graphql(graphqlOperation(ListEvents, {
+        filter: {
+          client: {
+            eq: this.context.id
+          }
+        }
+      }))
       events1 = EventData1.data.listEvents.items
       console.log(events1);
       const EventData = await API.graphql(graphqlOperation(ListEvents))
@@ -135,6 +143,7 @@ class MyAccount extends React.Component{
   }
 
 }
+MyAccount.contextType= userContext;
 
 // const MyCalendar = props => (
 
