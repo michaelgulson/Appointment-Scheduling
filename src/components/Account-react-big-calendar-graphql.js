@@ -44,8 +44,8 @@ class MyAccount extends React.Component{
       
       let eventsForCalendar = []
       
-      for (let i in EventData.data.listEvents.items) {
-        	let givenEvent = EventData.data.listEvents.items[i]
+      for (let i in EventData1.data.listEvents.items) {
+        	let givenEvent = EventData1.data.listEvents.items[i]
            let event = {
               title: givenEvent.client + " meeting with " + givenEvent.employee, 
               start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),
