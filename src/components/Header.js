@@ -45,14 +45,28 @@ class Header extends React.Component{
               <MenuButton class="dropbtn">
                 {this.context.firstName} <span aria-hidden>▾</span>
               </MenuButton>
-              <MenuList>
-                <MenuLink as="a" href="/signup">
-                  Sign Up
-                </MenuLink>
-                <MenuLink as="a" href="/">
-                  Log In
-                </MenuLink>
-              </MenuList>
+                
+                {this.context.type === 'client' ? 
+
+                  <MenuList>
+                      <MenuLink as="a" href="/appointment">
+                      Schedule Appointment
+                    </MenuLink>
+                    <MenuLink as="a" href="/"> 
+                      Log Out
+                    </MenuLink>
+                  </MenuList>
+                :
+                <MenuList>
+                  <MenuLink as="a" href="/signup">
+                    Sign Up
+                  </MenuLink>
+                  <MenuLink as="a" href="/">
+                    Log In
+                  </MenuLink>
+                </MenuList>
+                }
+              
             </Menu>        
           </div>
         </div>        
