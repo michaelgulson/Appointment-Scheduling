@@ -9,20 +9,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        user: 'Account',
+      firstName: 'Account',
+      lastName: '',
+      id: '',
+      type: '',
+      email: '',
+      password: '',
+      cellphone: '',
+      address: '',
         //setUser: this.setUser,
       };
 
 
-    this.setUser = (email) => {
+    this.setUser = (user) => {
       this.setState(state => ({
-        user: email
-          // state.user === ''
-          //   ? email
-          //   : state.user
-        
+        firstName: user.firstName,
+        lastName: user.lastName,
+        id: user.id,
+        type: user.type,
+        email: user.email,
+        password: user.password,
+        cellphone: user.cellphone,
+        address: user.address,
       }));
-      console.log('set user');
+      console.log('state for app.js file');
+      console.log(this.state);
     };
 }  
     render() {

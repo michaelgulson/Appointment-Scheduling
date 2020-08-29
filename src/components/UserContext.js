@@ -2,7 +2,14 @@ import React from 'react';
 
 
 const userContext = React.createContext({
-    user: 'Account',
+    firstName: 'Account',
+    lastName: '',
+    id: '',
+    type: '',
+    email: '',
+    password: '',
+    cellphone: '',
+    address: '',
     //setUser:  () => {},
 });
 

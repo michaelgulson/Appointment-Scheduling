@@ -32,8 +32,8 @@ class Login extends React.Component {
     event.preventDefault();
 
 
-    try {
-       const user = await Auth.signIn(this.state.email, this.state.password);
+    //try {
+       //const user = await Auth.signIn(this.state.email, this.state.password);
        try {
         const UserData = await API.graphql(graphqlOperation(ListUsers, {
           filter: {
@@ -42,20 +42,31 @@ class Login extends React.Component {
             }
           }
         }))
-        console.log('userData:', UserData)
+        console.log('userData:', UserData.data.listUsers.items[0])
         // this.setState({
         //   users: UserData.data.listUsers.items
         // })
-        this.props.setUser(UserData.data.listUsers.items[0].firstName);
+        var user = UserData.data.listUsers.items[0];
+        var userState = {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          id: user.id,
+          type: user.type,
+          email: user.email,
+          password: user.password,
+          cellphone: user.cellphone,
+          address: user.address,
+        }
+        this.props.setUser(userState);
         this.props.history.push('/Account');
       } catch (err) {
         console.log('error fetching users...', err)
       }
-      } catch (error) {
-        console.log('error signing in', error);
-        this.props.history.push('/');
-        alert("Oops! Something went wrong: " + error.message)
-      }
+      // } catch (error) {
+      //   console.log('error signing in', error);
+      //   this.props.history.push('/');
+      //   alert("Oops! Something went wrong: " + error.message)
+      // }
 
     //database call
     //alert('email and password: ' + this.state.email + ' ' + this.state.password);

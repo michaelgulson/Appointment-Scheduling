@@ -3,6 +3,7 @@ import Header from './Header';
 import { API, graphqlOperation } from 'aws-amplify'
 import { createEvent as CreateEvent } from '../graphql/mutations'
 import { Link, withRouter } from 'react-router-dom'
+import { userContext } from './UserContext';
 
 
 class ScheduleAppointment extends React.Component {
@@ -140,6 +141,9 @@ class ScheduleAppointment extends React.Component {
       )
     }
   }
+
+  ScheduleAppointment.contextType= userContext;
+
   
 
 export default withRouter(ScheduleAppointment)
