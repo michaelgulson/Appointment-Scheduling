@@ -43,11 +43,11 @@ class MyAccount extends React.Component{
       const EventData = await API.graphql(graphqlOperation(ListEvents))
       
       let eventsForCalendar = []
-      
+
       for (let i in EventData1.data.listEvents.items) {
         	let givenEvent = EventData1.data.listEvents.items[i]
            let event = {
-              title: givenEvent.client + " meeting with " + givenEvent.employee, 
+              title: this.context.firstName + " meeting with " + givenEvent.employee, 
               start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),
               end: moment(givenEvent.date + " " + givenEvent.endTime).toDate(),
             }
