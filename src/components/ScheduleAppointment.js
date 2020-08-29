@@ -36,7 +36,7 @@ class ScheduleAppointment extends React.Component {
       const { client, employee, service, date, startTime, endTime, color } = this.state
       if ( client === '' || date === '' || startTime === '' || endTime === '' ) return
   
-      const event = { clientId, employee, service, date, startTime, endTime, color }
+      const event = { client: clientId, employee, service, date, startTime, endTime, color }
       //const users = [...this.state.users, user]
       this.setState({
         client: clientId, employee: '', service: '', date: '', startTime: '', endTime: '', color:''
