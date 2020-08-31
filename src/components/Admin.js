@@ -7,9 +7,9 @@ import UserList from './UserList'
 //             <SignUpLogic />
 //         </div>
 // )
-const Admin = () => (
+const Admin = (props) => (
         <div>
-            <Header />
+            <Header setUser={props.setUser}/>
             <UserList />
         </div>
 )

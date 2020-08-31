@@ -60,26 +60,105 @@ class Header extends React.Component{
                 {this.context.firstName} <span aria-hidden>▾</span>
               </MenuButton>
                 
-                {this.context.type === 'client' ? 
-
+                {/*() => {
+                  switch(this.context.type){
+                  case('client'):
+                  return(
                   <MenuList>
                       <MenuLink as="a" href="/appointment">
                       Schedule Appointment
                     </MenuLink>
+                    <MenuLink as="a" href="/careprovider">
+                      Care Provider
+                    </MenuLink>
                     <MenuLink onClick={this.Logout} as="a" href="/"> 
                       Log Out
                     </MenuLink>
-                  </MenuList>
-                :
+                  </MenuList>);
+                  
+                case('employee'):
+                  return(
+                  <MenuList>
+                    <MenuLink as="a" href="/availability">
+                    Edit Availibility
+                  </MenuLink>
+                  <MenuLink as="a" href="/editbio">
+                    Edit Bio
+                  </MenuLink>
+                  <MenuLink onClick={this.Logout} as="a" href="/"> 
+                    Log Out
+                  </MenuLink>
+                </MenuList>);
+
+                case('admin'):
+                  return(
+                  <MenuList>
+                    <MenuLink as="a" href="/manageschedules">
+                      Manage Schedules
+                    </MenuLink>
+                    <MenuLink as="a" href="/admin">
+                      Manage Users
+                    </MenuLink>
+                  </MenuList>);
+                default :
+                return(
                 <MenuList>
-                  <MenuLink as="a" href="/signup">
-                    Sign Up
-                  </MenuLink>
-                  <MenuLink as="a" href="/">
-                    Log In
-                  </MenuLink>
-                </MenuList>
+                <MenuLink as="a" href="/signup">
+                  Sign Up
+                </MenuLink>
+                <MenuLink as="a" href="/">
+                  Log In
+                </MenuLink>
+                </MenuList>);
                 }
+                }
+              */}
+              { (this.context.type ==='client') ? 
+                <MenuList>
+                  <MenuLink as="a" href="/appointment">
+                  Schedule Appointment
+                </MenuLink>
+                <MenuLink as="a" href="/careprovider">
+                  Care Provider
+                </MenuLink>
+                <MenuLink onClick={this.Logout} as="a" href="/"> 
+                  Log Out
+                </MenuLink>
+                </MenuList>              
+                :
+              ((this.context.type === 'employee') ?
+                <MenuList>
+                <MenuLink as="a" href="/availability">
+                Edit Availibility
+                </MenuLink>
+                <MenuLink as="a" href="/editbio">
+                Edit Bio
+                </MenuLink>
+                <MenuLink onClick={this.Logout} as="a" href="/"> 
+                Log Out
+                </MenuLink> 
+                </MenuList>
+              :
+              ((this.context.type === 'admin') ?
+                <MenuList>
+                    <MenuLink as="a" href="/manageschedules">
+                      Manage Schedules
+                    </MenuLink>
+                    <MenuLink as="a" href="/admin">
+                      Manage Users
+                    </MenuLink>
+                </MenuList>
+              : 
+                <MenuList>
+                <MenuLink as="a" href="/signup">
+                  Sign Up
+                </MenuLink>
+                <MenuLink as="a" href="/">
+                  Log In
+                </MenuLink>
+                </MenuList>              
+              ))
+              }
               
             </Menu>        
           </div>

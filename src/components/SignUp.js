@@ -24,7 +24,7 @@ class SignUp extends React.Component {
         
         return(
             <div>
-                <Header/>
+                <Header setUser={this.props.setUser}/>
                 <SignUpGraphQL setUser={this.props.setUser} />
             </div>
         );
