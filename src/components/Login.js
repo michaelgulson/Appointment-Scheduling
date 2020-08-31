@@ -61,6 +61,7 @@ class Login extends React.Component {
         this.props.history.push('/Account');
       } catch (err) {
         console.log('error fetching users...', err)
+        alert("Oops! Something went wrong: " + err.message)
       }
       } catch (error) {
         console.log('error signing in', error);

@@ -8,6 +8,9 @@ import { userContext } from './UserContext';
 
 class ScheduleAppointment extends React.Component {
     // define some state to hold the data returned from the API
+    static contextType = userContext;
+
+   
     state = {
       client: 'client', employee: '', service: '', date: '', startTime: '', endTime: '', color:''
     }

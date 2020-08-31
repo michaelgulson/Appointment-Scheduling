@@ -32,8 +32,8 @@ class App extends React.Component {
         cellphone: user.cellphone,
         address: user.address,
       }));
-      console.log('state for app.js file');
-      console.log(this.state);
+      // console.log('state for app.js file');
+      // console.log(this.state);
     };
 }  
     render() {
@@ -50,10 +50,10 @@ class App extends React.Component {
             <Route path="/volunteer" component={Volunteer} />
             <Route path="/search" component={Search} />
             <Route path="/signup" render={() => <SignUp setUser={this.setUser}/>} />
-            <Route path="/account" component={Account} />
+            <Route path="/account" render={() => <Account setUser={this.setUser}/>} />
             <Route path="/userlist" component={UserList} />
-            <Route path="/admin" component={Admin} />
-            <Route path="/appointment" component={Appointment} />
+            <Route path="/admin" render={() => <Admin setUser={this.setUser}/>} />
+            <Route path="/appointment" render={() => <Appointment setUser={this.setUser}/>} />
           </Switch>
          </userContext.Provider>
     

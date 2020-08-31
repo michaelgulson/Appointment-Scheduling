@@ -6,7 +6,7 @@ import Login from './/Login'
 
   const Home = (props) => (
     <div>
-    <Header />    
+    <Header setUser={props.setUser} />    
       <div class="background-image">
         <h2>"Mary S. - "My caregiver from St. Lorraine</h2>
         <h2>helped me recover from my knee surgery through</h2>
@@ -17,12 +17,6 @@ import Login from './/Login'
         <br></br>
         <br></br>
         <Login setUser={props.setUser}/>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
         <br></br>
         <br></br>
         <br></br>

@@ -15,6 +15,20 @@ import { userContext } from './UserContext';
 class Header extends React.Component{
   static contextType = userContext;
 
+  Logout() {
+    var userState = {
+      firstName: 'Account',
+      lastName: '',
+      id: '',
+      type: '',
+      email: '',
+      password: '',
+      cellphone: '',
+      address: '',
+    }
+    this.props.setUser(userState);
+
+  }
 
 
   render (){
@@ -52,7 +66,7 @@ class Header extends React.Component{
                       <MenuLink as="a" href="/appointment">
                       Schedule Appointment
                     </MenuLink>
-                    <MenuLink as="a" href="/"> 
+                    <MenuLink onClick={this.Logout} as="a" href="/"> 
                       Log Out
                     </MenuLink>
                   </MenuList>
