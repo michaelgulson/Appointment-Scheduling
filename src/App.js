@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect} from 'react-router-dom'
 import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin, Appointment } from './components/index'
 import { userContext } from './components/UserContext';
 
@@ -50,10 +50,27 @@ class App extends React.Component {
             <Route path="/volunteer" component={Volunteer} />
             <Route path="/search" component={Search} />
             <Route path="/signup" render={() => <SignUp setUser={this.setUser}/>} />
-            <Route path="/account" render={() => <Account setUser={this.setUser}/>} />
+            <Route path="/account" render={() => {
+            switch(this.state.type){
+              case 'client': return <Account setUser={this.setUser}/>;
+              case 'admin' : return <Account setUser={this.setUser}/>;
+              case 'employee' : return <Account setUser={this.setUser}/>;
+              default: return <Redirect to="/" />;
+            }
+          }} 
+              />
             <Route path="/userlist" component={UserList} />
-            <Route path="/admin" render={() => <Admin setUser={this.setUser}/>} />
-            <Route path="/appointment" render={() => <Appointment setUser={this.setUser}/>} />
+            <Route path="/admin" render={() => this.state.type === 'admin' ?
+             <Admin setUser={this.setUser}/> : <Redirect to="/" />} />
+            <Route path="/appointment" render={() => {
+            switch(this.state.type){
+              case 'client': return <Appointment setUser={this.setUser}/>;
+              case 'admin' : return <Appointment setUser={this.setUser}/>;
+              case 'employee' : return <Appointment setUser={this.setUser}/>;
+              default: return <Redirect to="/" />;
+            }
+          }} 
+              />
           </Switch>
          </userContext.Provider>
     
