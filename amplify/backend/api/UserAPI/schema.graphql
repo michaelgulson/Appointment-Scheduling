@@ -19,3 +19,11 @@ type Event @model {
   endTime: String
   color: String
 }
+
+type EventAvailability @model{
+  id: ID!
+  employee: String!
+  date: String
+  startTime: String
+  endTime: String
+}

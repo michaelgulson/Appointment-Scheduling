@@ -79,3 +79,40 @@ export const listEvents = /* GraphQL */ `
     }
   }
 `;
+export const getEventAvailability = /* GraphQL */ `
+  query GetEventAvailability($id: ID!) {
+    getEventAvailability(id: $id) {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listEventAvailabilitys = /* GraphQL */ `
+  query ListEventAvailabilitys(
+    $filter: ModelEventAvailabilityFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventAvailabilitys(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        employee
+        date
+        startTime
+        endTime
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

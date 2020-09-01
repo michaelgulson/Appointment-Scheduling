@@ -97,3 +97,42 @@ export const onDeleteEvent = /* GraphQL */ `
     }
   }
 `;
+export const onCreateEventAvailability = /* GraphQL */ `
+  subscription OnCreateEventAvailability {
+    onCreateEventAvailability {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEventAvailability = /* GraphQL */ `
+  subscription OnUpdateEventAvailability {
+    onUpdateEventAvailability {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEventAvailability = /* GraphQL */ `
+  subscription OnDeleteEventAvailability {
+    onDeleteEventAvailability {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -115,3 +115,51 @@ export const deleteEvent = /* GraphQL */ `
     }
   }
 `;
+export const createEventAvailability = /* GraphQL */ `
+  mutation CreateEventAvailability(
+    $input: CreateEventAvailabilityInput!
+    $condition: ModelEventAvailabilityConditionInput
+  ) {
+    createEventAvailability(input: $input, condition: $condition) {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateEventAvailability = /* GraphQL */ `
+  mutation UpdateEventAvailability(
+    $input: UpdateEventAvailabilityInput!
+    $condition: ModelEventAvailabilityConditionInput
+  ) {
+    updateEventAvailability(input: $input, condition: $condition) {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteEventAvailability = /* GraphQL */ `
+  mutation DeleteEventAvailability(
+    $input: DeleteEventAvailabilityInput!
+    $condition: ModelEventAvailabilityConditionInput
+  ) {
+    deleteEventAvailability(input: $input, condition: $condition) {
+      id
+      employee
+      date
+      startTime
+      endTime
+      createdAt
+      updatedAt
+    }
+  }
+`;
