@@ -59,7 +59,8 @@ class App extends React.Component {
             }
           }} 
               />
-            <Route path="/userlist" component={UserList} />
+            {//<Route path="/userlist" component={UserList} />
+            }
             <Route path="/admin" render={() => this.state.type === 'admin' ?
              <Admin setUser={this.setUser}/> : <Redirect to="/" />} />
             <Route path="/appointment" render={() => {
