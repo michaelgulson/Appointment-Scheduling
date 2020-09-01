@@ -1,18 +1,23 @@
+
+
+
 import React from 'react';
 import Header from './Header';
 import { API, graphqlOperation } from 'aws-amplify'
 import { createEvent as CreateEvent } from '../graphql/mutations'
+import { createEventAvailability as CreateEventAvailability } from '../graphql/mutations'
+
 import { Link, withRouter } from 'react-router-dom'
 import { userContext } from './UserContext';
 
 
-class ScheduleAppointment extends React.Component {
+class EditEventAvaialability extends React.Component {
     // define some state to hold the data returned from the API
     static contextType = userContext;
 
    
     state = {
-      client: this.context.id, employee: '', service: '', date: '', startTime: '', endTime: '', color:''
+      employee: this.context.id, date: '', startTime: '', endTime: ''
     }
     handleSubmit = (event) => {
   
@@ -34,19 +39,19 @@ class ScheduleAppointment extends React.Component {
       }
     }*/
     createEvent = async() => {
-      var clientId = this.context.id;
+      var employeeId = this.context.id;
 
-      const { client, employee, service, date, startTime, endTime, color } = this.state
-      if ( client === '' || date === '' || startTime === '' || endTime === '' ) return
+      const { employee, date, startTime, endTime} = this.state
+      if ( employee === '' || date === '' || startTime === '' || endTime === '' ) return
   
-      const event = { client: clientId, employee, service, date, startTime, endTime, color }
+      const eventAvailability = { employee: employeeId, date, startTime, endTime}
       //const users = [...this.state.users, user]
       this.setState({
-        client: clientId, employee: '', service: '', date: '', startTime: '', endTime: '', color:''
+        employee: employeeId,  date: '', startTime: '', endTime: ''
       })
   
       try {
-        await API.graphql(graphqlOperation(CreateEvent, { input: event }))
+        await API.graphql(graphqlOperation(CreateEventAvailability, { input: eventAvailability }))
         console.log('item created!')
       } catch (err) {
         console.log('error creating event...', err)
@@ -62,6 +67,7 @@ class ScheduleAppointment extends React.Component {
     render() {
       return (
         <>
+          <Header />
           <div>
           <form onSubmit={this.handleSubmit}>
             <h1>Schedule Appointment</h1>
@@ -101,44 +107,6 @@ class ScheduleAppointment extends React.Component {
               </label>
               <br></br>
               <br></br>
-              <label>
-                  Service:
-                  <br></br>
-                  <input  
-                      type= "text" 
-                      name='service'
-                      onChange={this.onChange}
-                      value={this.state.service}
-                  /> 
-              </label>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <label>
-                  Employee:
-                  <br></br>
-                  <input  
-                      type= "text" 
-                      name='employee'
-                      onChange={this.onChange}
-                      value={this.state.employee}
-                  /> 
-              </label>
-              <br></br>
-              <br></br>
-              <label>
-                  Color:
-                  <br></br>
-                  <input  
-                      type='text' 
-                      name='color'
-                      onChange={this.onChange}
-                      value={this.state.color}
-                  /> 
-              </label>
-              <br></br>
-              <br></br>
               <button onClick={this.createEvent}>Create Event</button>            
               </form>
           </div>
@@ -147,8 +115,8 @@ class ScheduleAppointment extends React.Component {
     }
   }
 
-  ScheduleAppointment.contextType= userContext;
+  EditEventAvaialability.contextType= userContext;
 
   
 
-export default withRouter(ScheduleAppointment)
+export default withRouter(EditEventAvaialability)

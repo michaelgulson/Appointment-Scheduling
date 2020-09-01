@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch, Redirect} from 'react-router-dom'
-import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin, Appointment } from './components/index'
+import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin, Appointment, EditEventAvailability } from './components/index'
 import { userContext } from './components/UserContext';
 
 
@@ -71,7 +71,8 @@ class App extends React.Component {
             }
           }} 
               />
-          </Switch>
+            <Route path="/availability" render= {() => (this.state.type === 'employee') ?
+            <EditEventAvailability setUser={this.setUser}/> : <Redirect to="/" />} />          </Switch>
          </userContext.Provider>
     
         </React.Fragment>
