@@ -19,6 +19,13 @@ class Header extends React.Component{
   static contextType = userContext;
 
   async Logout() {
+    try {
+      const logoutReturn = await Auth.signOut();
+      console.log(logoutReturn);
+    }
+    catch(error){
+      console.log('error', error);
+    }
     var userState = {
       firstName: 'Account',
       lastName: '',
@@ -30,12 +37,6 @@ class Header extends React.Component{
       address: '',
     }
     this.props.setUser(userState);
-    try {
-      const logoutReturn = await Auth.signOut();
-    }
-    catch(error){
-      console.log('error', error);
-    }
   }
 
 
