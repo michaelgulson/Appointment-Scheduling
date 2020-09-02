@@ -53,7 +53,7 @@ class App extends React.Component {
           .then((responseGraphQL) => {
             console.log('responseGraphQL')
             console.log(responseGraphQL);
-            this.setState(responseGraphQL);
+            this.setState(responseGraphQL.data.listUsers.items[0]);
           })
           .catch((error) => {
             console.log("error")
