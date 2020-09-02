@@ -7,6 +7,8 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { createEvent as CreateEvent } from '../graphql/mutations'
 import { createEventAvailability as CreateEventAvailability } from '../graphql/mutations'
 
+import moment from 'moment'
+
 import { Link, withRouter } from 'react-router-dom'
 import { userContext } from './UserContext';
 
@@ -17,7 +19,7 @@ class EditEventAvailability extends React.Component {
 
    
     state = {
-      employee: this.context.id, date: '', startTime: '', endTime: ''
+      employeeId: this.context.id, date: '', startTime: '', endTime: ''
     }
     handleSubmit = (event) => {
   
@@ -39,19 +41,27 @@ class EditEventAvailability extends React.Component {
       }
     }*/
     createEvent = async() => {
-      var employeeId = this.context.id;
+      //var employeeId = this.context.id;
 
-      const { employee, date, startTime, endTime} = this.state
-      if ( employee === '' || date === '' || startTime === '' || endTime === '' ) return
+      const { employeeId, date, startTime, endTime} = this.state
+      if ( employeeId === '' || date === '' || startTime === '' || endTime === '' ) return
   
-      const eventAvailability = { employee: employeeId, date, startTime, endTime}
+      var eventAvailability = { employeeId: this.context.id, date, startTime, endTime}
+      const dateToIso = moment(eventAvailability.date).toISOString();
+      const startTimeToIso = moment(eventAvailability.startTime).toISOString();
+      const endTimeToIso = moment(eventAvailability.endTime).toISOString();
       //const users = [...this.state.users, user]
+      eventAvailability = {
+          date: dateToIso,
+          startTime: startTimeToIso,
+          endTime: endTimeToIso
+      }
       this.setState({
-        employee: employeeId,  date: '', startTime: '', endTime: ''
+        employeeId: employeeId,  date: '', startTime: '', endTime: ''
       })
   
       try {
-          
+
         await API.graphql(graphqlOperation(CreateEventAvailability, { input: eventAvailability }))
         console.log('item created!')
       } catch (err) {

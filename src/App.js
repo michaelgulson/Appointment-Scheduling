@@ -99,7 +99,7 @@ class App extends React.Component {
             }
             <Route path="/admin" render={() => this.state.type === 'admin' ?
              <Admin setUser={this.setUser}/> : <Redirect to="/" />} />
-            <Route path="/appointment" render={() => {
+           {/* <Route path="/appointment" render={() => {
             switch(this.state.type){
               case 'client': return <Appointment setUser={this.setUser}/>;
               case 'admin' : return <Appointment setUser={this.setUser}/>;
@@ -107,7 +107,9 @@ class App extends React.Component {
               default: return <Redirect to="/" />;
             }
           }} 
-              />
+        />*/}
+
+            <Route path="/appointment" render={() => <Appointment setUser={this.setUser}/>} />
             <Route path="/availability" render= {() =>
             //() => (this.state.type === 'employee') ?
             <EditEventAvailability setUser={this.setUser}/>
