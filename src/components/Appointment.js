@@ -2,9 +2,9 @@ import React from 'react';
 import Header from './Header';
 import ScheduleAppointment from './ScheduleAppointment'
 
-const Appointment = () => (
+const Appointment = (props) => (
     <div>
-        <Header />
+        <Header setUser={props.setUser}/>
         <ScheduleAppointment />
     </div>
 )

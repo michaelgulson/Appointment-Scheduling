@@ -11,7 +11,7 @@ import events from './events'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { API, graphqlOperation } from 'aws-amplify'
-import { listEvents as ListEvents } from '../graphql/queries'
+import { listEventAvailabilitys as ListEventAvailabilitys } from '../graphql/queries'
 import { userContext } from './UserContext';
 
 
@@ -22,7 +22,7 @@ const localizer = momentLocalizer(moment)
 var EventData1;
 var events1 = [];
 
-class MyAccount extends React.Component{
+class AvailabilityCalendar extends React.Component{
   state = {
     events:[],
     eventsForCalendar: []
@@ -31,23 +31,23 @@ class MyAccount extends React.Component{
   async  componentDidMount() {
     try {
       //EventData1 = await API.graphql(graphqlOperation(ListEvents))
-      EventData1 = await API.graphql(graphqlOperation(ListEvents, {
+      EventData1 = await API.graphql(graphqlOperation(ListEventAvailabilitys, {
         filter: {
-          client: {
+          employee: {
             eq: this.context.id
           }
         }
       }))
       events1 = EventData1.data.listEvents.items
       console.log(events1);
-      const EventData = await API.graphql(graphqlOperation(ListEvents))
+      const EventData = await API.graphql(graphqlOperation(ListEventAvailabilitys))
       
       let eventsForCalendar = []
 
       for (let i in EventData1.data.listEvents.items) {
         	let givenEvent = EventData1.data.listEvents.items[i]
            let event = {
-              title: this.context.firstName + " meeting with " + givenEvent.employee, 
+              title: this.context.firstName + "available", 
               start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),
               end: moment(givenEvent.date + " " + givenEvent.endTime).toDate(),
             }
@@ -75,6 +75,8 @@ class MyAccount extends React.Component{
     console.log(this.state.eventsForCalendar , 'eventsForCalendar')
     return(
       <>
+        <Header setUser={this.props.setUser}/>
+
         {
           this.state.eventsForCalendar.length > 0 ?
           <Calendar
@@ -143,21 +145,13 @@ class MyAccount extends React.Component{
   }
 
 }
-MyAccount.contextType= userContext;
+AvailabilityCalendar.contextType= userContext;
 
 // const MyCalendar = props => (
 
 
 // )
 
-const Account = (props) => (
-    <>
-        <Header setUser={props.setUser}/>
-        {//<MyCalendar />
-        }
-        <MyAccount />
-    </>
-)
 
 
-export default Account
+export default AvailabilityCalendar

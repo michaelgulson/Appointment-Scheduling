@@ -11,7 +11,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { userContext } from './UserContext';
 
 
-class EditEventAvaialability extends React.Component {
+class EditEventAvailability extends React.Component {
     // define some state to hold the data returned from the API
     static contextType = userContext;
 
@@ -67,7 +67,7 @@ class EditEventAvaialability extends React.Component {
     render() {
       return (
         <>
-          <Header />
+          <Header setUser={this.props.setUser}/>
           <div>
           <form onSubmit={this.handleSubmit}>
             <h1>Schedule Appointment</h1>
@@ -115,8 +115,8 @@ class EditEventAvaialability extends React.Component {
     }
   }
 
-  EditEventAvaialability.contextType= userContext;
+  EditEventAvailability.contextType= userContext;
 
   
 
-export default withRouter(EditEventAvaialability)
+export default withRouter(EditEventAvailability)

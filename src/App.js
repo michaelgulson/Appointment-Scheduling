@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch, Redirect} from 'react-router-dom'
 import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin, Appointment, EditEventAvailability } from './components/index'
 import { userContext } from './components/UserContext';
+import { API, graphqlOperation, Auth } from 'aws-amplify'
 
 
 class App extends React.Component {
@@ -35,7 +36,24 @@ class App extends React.Component {
       // console.log('state for app.js file');
       // console.log(this.state);
     };
-}  
+  }
+
+    componentDidMount() {
+      Auth.currentUserInfo()
+      .then((response) => {
+        if(response && response != null){
+          
+        }
+         console.log(response) 
+      })
+      .catch((error) => {
+           console.log("Error") 
+    
+          console.log(error)
+      })
+    
+    };
+  
     render() {
       return(
         <React.Fragment>
