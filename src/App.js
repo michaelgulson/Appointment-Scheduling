@@ -51,8 +51,9 @@ class App extends React.Component {
             }
           }))
           .then((responseGraphQL) => {
+            console.log('responseGraphQL')
             console.log(responseGraphQL);
-            this.state.setState(responseGraphQL);
+            this.setState(responseGraphQL);
           })
           .catch((error) => {
             console.log("error")
