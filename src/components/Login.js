@@ -33,7 +33,7 @@ class Login extends React.Component {
 
 
     try {
-       const userAuth = await Auth.signIn(this.state.email, this.state.password);
+      const userAuth = await Auth.signIn(this.state.email, this.state.password);
        try {
         const UserData = await API.graphql(graphqlOperation(ListUsers, {
           filter: {

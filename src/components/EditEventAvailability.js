@@ -51,6 +51,7 @@ class EditEventAvailability extends React.Component {
       })
   
       try {
+          
         await API.graphql(graphqlOperation(CreateEventAvailability, { input: eventAvailability }))
         console.log('item created!')
       } catch (err) {

@@ -11,11 +11,14 @@ import {
 import "@reach/menu-button/styles.css";
 
 import { userContext } from './UserContext';
+import {  API, graphqlOperation, Auth} from 'aws-amplify';
+
+
 
 class Header extends React.Component{
   static contextType = userContext;
 
-  Logout() {
+  async Logout() {
     var userState = {
       firstName: 'Account',
       lastName: '',
@@ -27,7 +30,12 @@ class Header extends React.Component{
       address: '',
     }
     this.props.setUser(userState);
-
+    try {
+      const logoutReturn = await Auth.signOut();
+    }
+    catch(error){
+      console.log('error', error);
+    }
   }
 
 
