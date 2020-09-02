@@ -83,10 +83,8 @@ export const getEventAvailability = /* GraphQL */ `
   query GetEventAvailability($id: ID!) {
     getEventAvailability(id: $id) {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
@@ -105,10 +103,8 @@ export const listEventAvailabilitys = /* GraphQL */ `
     ) {
       items {
         id
-        employee
+        employeeId
         date
-        startTime
-        endTime
         createdAt
         updatedAt
       }

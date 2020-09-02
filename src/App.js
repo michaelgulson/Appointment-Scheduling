@@ -4,6 +4,7 @@ import { Route, Switch, Redirect} from 'react-router-dom'
 import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Account, UserList, Admin, Appointment, EditEventAvailability } from './components/index'
 import { userContext } from './components/UserContext';
 import { API, graphqlOperation, Auth } from 'aws-amplify'
+import { listUsers as ListUsers } from './graphql/queries'
 
 
 class App extends React.Component {
@@ -42,7 +43,23 @@ class App extends React.Component {
       Auth.currentUserInfo()
       .then((response) => {
         if(response && response != null){
-          
+          API.graphql(graphqlOperation(ListUsers, {
+            filter: {
+              email: {
+                eq: response.attributes.email
+              }
+            }
+          }))
+          .then((responseGraphQL) => {
+            console.log(responseGraphQL);
+            this.state.setState(responseGraphQL);
+          })
+          .catch((error) => {
+            console.log("error")
+            console.log(error)
+
+          })
+
         }
          console.log(response) 
       })
@@ -90,8 +107,11 @@ class App extends React.Component {
             }
           }} 
               />
-            <Route path="/availability" render= {() => (this.state.type === 'employee') ?
-            <EditEventAvailability setUser={this.setUser}/> : <Redirect to="/" />} />          </Switch>
+            <Route path="/availability" render= {//() => (this.state.type === 'employee') ?
+            <EditEventAvailability setUser={this.setUser}/>
+            // : <Redirect to="/" />}
+            }/>
+            </Switch>
          </userContext.Provider>
     
         </React.Fragment>

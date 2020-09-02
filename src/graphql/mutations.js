@@ -122,10 +122,8 @@ export const createEventAvailability = /* GraphQL */ `
   ) {
     createEventAvailability(input: $input, condition: $condition) {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
@@ -138,10 +136,8 @@ export const updateEventAvailability = /* GraphQL */ `
   ) {
     updateEventAvailability(input: $input, condition: $condition) {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
@@ -154,10 +150,8 @@ export const deleteEventAvailability = /* GraphQL */ `
   ) {
     deleteEventAvailability(input: $input, condition: $condition) {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }

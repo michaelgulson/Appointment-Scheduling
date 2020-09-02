@@ -101,10 +101,8 @@ export const onCreateEventAvailability = /* GraphQL */ `
   subscription OnCreateEventAvailability {
     onCreateEventAvailability {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
@@ -114,10 +112,8 @@ export const onUpdateEventAvailability = /* GraphQL */ `
   subscription OnUpdateEventAvailability {
     onUpdateEventAvailability {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
@@ -127,10 +123,8 @@ export const onDeleteEventAvailability = /* GraphQL */ `
   subscription OnDeleteEventAvailability {
     onDeleteEventAvailability {
       id
-      employee
+      employeeId
       date
-      startTime
-      endTime
       createdAt
       updatedAt
     }
