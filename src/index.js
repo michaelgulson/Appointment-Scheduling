@@ -12,7 +12,7 @@ import {Provider} from 'react-redux'
 
 Amplify.configure(config)
 
-const store = createStore(userReducer);
+//const store = createStore(userReducer);
 //import pg from 'pg'
 //import Modal from 'react-modal';
 /* const { Client } = require('pg');

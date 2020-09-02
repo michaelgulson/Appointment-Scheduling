@@ -23,5 +23,7 @@ type Event @model {
 type EventAvailability @model{
   id: ID!
   employeeId: String!
-  date: AWSJSON
+  date: AWSDate
+  startTime: AWSTime
+  endTime: AWSTime
 }

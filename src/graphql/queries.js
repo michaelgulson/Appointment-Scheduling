@@ -85,6 +85,8 @@ export const getEventAvailability = /* GraphQL */ `
       id
       employeeId
       date
+      startTime
+      endTime
       createdAt
       updatedAt
     }
@@ -105,6 +107,8 @@ export const listEventAvailabilitys = /* GraphQL */ `
         id
         employeeId
         date
+        startTime
+        endTime
         createdAt
         updatedAt
       }

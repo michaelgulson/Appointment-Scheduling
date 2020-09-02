@@ -108,7 +108,8 @@ class App extends React.Component {
             }
           }} 
               />
-            <Route path="/availability" render= {//() => (this.state.type === 'employee') ?
+            <Route path="/availability" render= {() =>
+            //() => (this.state.type === 'employee') ?
             <EditEventAvailability setUser={this.setUser}/>
             // : <Redirect to="/" />}
             }/>

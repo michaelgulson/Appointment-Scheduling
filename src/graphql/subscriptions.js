@@ -103,6 +103,8 @@ export const onCreateEventAvailability = /* GraphQL */ `
       id
       employeeId
       date
+      startTime
+      endTime
       createdAt
       updatedAt
     }
@@ -114,6 +116,8 @@ export const onUpdateEventAvailability = /* GraphQL */ `
       id
       employeeId
       date
+      startTime
+      endTime
       createdAt
       updatedAt
     }
@@ -125,6 +129,8 @@ export const onDeleteEventAvailability = /* GraphQL */ `
       id
       employeeId
       date
+      startTime
+      endTime
       createdAt
       updatedAt
     }
