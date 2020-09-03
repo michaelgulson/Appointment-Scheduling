@@ -37,7 +37,6 @@ class MyAccount extends React.Component{
 
   async  componentDidMount() {
     try {
-      //EventData1 = await API.graphql(graphqlOperation(ListEvents))
       EventData1 = await API.graphql(graphqlOperation(ListEvents, {
         filter: {
           client: {
@@ -47,10 +46,35 @@ class MyAccount extends React.Component{
       }))
       events1 = EventData1.data.listEvents.items
       console.log(events1);
-      const EventData = await API.graphql(graphqlOperation(ListEvents))
+      const allEventData = await API.graphql(graphqlOperation(ListEvents))
       
       let eventsForCalendar = []
+      let allEventsForCalendar = []
 
+      for (let i in allEventData.data.listEvents.items) {
+        let givenEvent = allEventData.data.listEvents.items[i]
+        try{
+          var clientFirstName = await API.graphql(graphqlOperation(ListUsers, {
+          filter: {
+            id: {
+              eq: givenEvent.client
+            }
+          }
+        }))
+        let event = {
+          title: clientFirstName.data.listUsers.items[0].firstName + " meeting with " + givenEvent.employee, 
+          start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),
+          end: moment(givenEvent.date + " " + givenEvent.endTime).toDate(),
+        }
+        allEventsForCalendar.push(event)
+      }
+      catch(error){
+        console.log("failed allEventData query", givenEvent, error)
+      }
+      }
+      
+
+            
       for (let i in EventData1.data.listEvents.items) {
         	let givenEvent = EventData1.data.listEvents.items[i]
            let event = {
@@ -63,7 +87,7 @@ class MyAccount extends React.Component{
       
       //console.log('EventData:', EventData)
       this.setState({
-        allEvents: EventData.data.listEvents.items,
+        allEvents: allEventsForCalendar,
         filteredEvents: eventsForCalendar
       })
     } catch (err) {
