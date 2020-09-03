@@ -124,6 +124,9 @@ class Header extends React.Component{
               */}
               { (this.context.type ==='client') ? 
                 <MenuList>
+                <MenuLink as="a" href="/account">
+                  Calendar
+                </MenuLink>
                   <MenuLink as="a" href="/appointment">
                   Schedule Appointment
                 </MenuLink>
@@ -137,6 +140,9 @@ class Header extends React.Component{
                 :
               ((this.context.type === 'employee') ?
                 <MenuList>
+                <MenuLink as="a" href="/account">
+                  Calendar
+                </MenuLink>  
                 <MenuLink as="a" href="/availability">
                 Edit Availibility
                 </MenuLink>
@@ -150,11 +156,17 @@ class Header extends React.Component{
               :
               ((this.context.type === 'admin') ?
                 <MenuList>
+                    <MenuLink as="a" href="/account">
+                      Calendar
+                    </MenuLink>
                     <MenuLink as="a" href="/manageschedules">
                       Manage Schedules
                     </MenuLink>
                     <MenuLink as="a" href="/admin">
                       Manage Users
+                    </MenuLink>
+                    <MenuLink onClick={this.Logout} as="a" href="/"> 
+                      Log Out
                     </MenuLink>
                 </MenuList>
               : 
