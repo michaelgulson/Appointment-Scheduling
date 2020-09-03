@@ -21,11 +21,18 @@ const localizer = momentLocalizer(moment)
 
 var EventData1;
 var events1 = [];
+var julyFourth = {
+  title: "Fourth of July",
+  allDay: true,
+  start: new Date(2020, 7, 4),
+  end: new Date(2020, 7, 4)
+
+};
 
 class MyAccount extends React.Component{
   state = {
-    events:[],
-    eventsForCalendar: []
+    allEvents:[],
+    filteredEvents: []
   }
 
   async  componentDidMount() {
@@ -56,8 +63,8 @@ class MyAccount extends React.Component{
       
       //console.log('EventData:', EventData)
       this.setState({
-        events: EventData.data.listEvents.items,
-        eventsForCalendar: eventsForCalendar
+        allEvents: EventData.data.listEvents.items,
+        filteredEvents: eventsForCalendar
       })
     } catch (err) {
       console.log('error fetching events...', err)
@@ -76,10 +83,39 @@ class MyAccount extends React.Component{
     return(
       <>
         {
-          this.state.eventsForCalendar.length > 0 ?
+          (this.context.type === "admin" || this.context.type === "employee") ?
+          (this.state.allEvents > 0 ?
+            <Calendar
+            localizer={localizer}
+            events={this.state.allEvents}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500 }}
+            eventPropGetter={event => ({
+              style: {
+                backgroundColor: event.color,
+              },
+            })}
+          />  
+          :
           <Calendar
           localizer={localizer}
-          events={this.state.eventsForCalendar}
+          events={julyFourth}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }}
+          eventPropGetter={event => ({
+            style: {
+              backgroundColor: event.color,
+            },
+          })}
+        />)
+
+        :
+          (this.state.filteredEvents.length > 0 ?
+          <Calendar
+          localizer={localizer}
+          events={this.state.filteredEvents}
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500 }}
@@ -90,7 +126,18 @@ class MyAccount extends React.Component{
           })}
         />
         :
-        null
+        <Calendar
+        localizer={localizer}
+        events={julyFourth}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+        eventPropGetter={event => ({
+          style: {
+            backgroundColor: event.color,
+          },
+        })}
+      />)
         }
       {/*<table>
             <tr>
