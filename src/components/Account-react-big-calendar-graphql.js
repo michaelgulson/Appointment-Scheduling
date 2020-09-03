@@ -12,6 +12,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { API, graphqlOperation } from 'aws-amplify'
 import { listEvents as ListEvents } from '../graphql/queries'
+import { listUsers as ListUsers } from '../graphql/queries'
+
 import { userContext } from './UserContext';
 
 
