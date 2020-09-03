@@ -67,7 +67,7 @@ class EditEventAvailability extends React.Component {
       } catch (err) {
         console.log('error creating event...', err)
       }
-      this.props.history.push('/Account');
+      this.props.history.push('/availability');
       //testconnection();
     }
     onChange = (event) => {
@@ -80,7 +80,7 @@ class EditEventAvailability extends React.Component {
         <>
           <Header setUser={this.props.setUser}/>
           <div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.createEvent}>
             <h1>Schedule Appointment</h1>
               <label>
                 Date:
