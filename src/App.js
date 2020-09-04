@@ -88,15 +88,15 @@ class App extends React.Component {
             <Route path="/signup" render={() => <SignUp setUser={this.setUser}/>} />
             {//Account page doesn't refresh, so it doesn't need to be changed//
             }
-            <Route path="/account" render={() => {
-            switch(this.state.type){
+            <Route path="/account" render={() => <Account setUser={this.setUser}/>} />
+            {/*switch(this.state.type){
               case 'client': return <Account setUser={this.setUser}/>;
               case 'admin' : return <Account setUser={this.setUser}/>;
               case 'employee' : return <Account setUser={this.setUser}/>;
               default: return <Redirect to="/" />;
             }
-          }} 
-              />
+          }} */}
+              
             {//<Route path="/userlist" component={UserList} />
             }
             {//Admin is refreshing causing bugs
