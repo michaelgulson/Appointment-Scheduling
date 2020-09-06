@@ -32,8 +32,8 @@ class Login extends React.Component {
     event.preventDefault();
 
 
-    try {
-      const userAuth = await Auth.signIn(this.state.email, this.state.password);
+    // try {
+    //   const userAuth = await Auth.signIn(this.state.email, this.state.password);
        try {
         const UserData = await API.graphql(graphqlOperation(ListUsers, {
           filter: {
@@ -63,11 +63,11 @@ class Login extends React.Component {
         console.log('error fetching users...', err)
         alert("Oops! Something went wrong: " + err.message)
       }
-      } catch (error) {
-        console.log('error signing in', error);
-        this.props.history.push('/');
-        alert("Oops! Something went wrong: " + error.message)
-      }
+      // } catch (error) {
+      //   console.log('error signing in', error);
+      //   this.props.history.push('/');
+      //   alert("Oops! Something went wrong: " + error.message)
+      // }
 
     //database call
     //alert('email and password: ' + this.state.email + ' ' + this.state.password);

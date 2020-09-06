@@ -23,13 +23,13 @@ const localizer = momentLocalizer(moment)
 
 var EventData1;
 var events1 = [];
-var julyFourth = {
+var julyFourth = [{
   title: "Fourth of July",
   allDay: true,
-  start: new Date(2020, 7, 4),
-  end: new Date(2020, 7, 4)
+  start: new moment("7/4/2020").toDate,
+  end: new moment("7/4/2020").toDate
 
-};
+}];
 
 class MyAccount extends React.Component{
   state = {
@@ -55,14 +55,14 @@ class MyAccount extends React.Component{
 
       for (let i in allEventData.data.listEvents.items) {
         let givenEvent = allEventData.data.listEvents.items[i]
-        /*try{
-          var clientFirstName = await API.graphql(graphqlOperation(ListUsers, {
-          filter: {
-            id: {
-              eq: givenEvent.client
-            }
-          }
-        }))*/
+        // try{
+        //   var clientFirstName = await API.graphql(graphqlOperation(ListUsers, {
+        //   filter: {
+        //     id: {
+        //       eq: givenEvent.client
+        //     }
+        //   }
+        // }))
         let event = {
           title: givenEvent.client + " meeting with " + givenEvent.employee, 
           start: moment(givenEvent.date + " " + givenEvent.startTime).toDate(),

@@ -59,11 +59,13 @@ class EditEventAvailability extends React.Component {
       this.setState({
         employeeId: employeeId,  date: '', startTime: '', endTime: ''
       })
+      console.log(eventAvailability)
   
       try {
 
         await API.graphql(graphqlOperation(CreateEventAvailability, { input: eventAvailability }))
         console.log('item created!')
+
       } catch (err) {
         console.log('error creating event...', err)
       }
