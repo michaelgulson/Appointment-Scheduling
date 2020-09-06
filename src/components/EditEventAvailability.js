@@ -40,16 +40,16 @@ class EditEventAvailability extends React.Component {
         console.log('error fetching users...', err)
       }
     }*/
-    createEvent = async() => {
+    createEvent = async(event) => {
       //var employeeId = this.context.id;
-
+      event.preventDefault();
       const { employeeId, date, startTime, endTime} = this.state
-      if ( employeeId === '' || date === '' || startTime === '' || endTime === '' ) return
-  
+      if ( employeeId === ''|| date === '' || startTime === '' || endTime === '' ) return
+      console.log(startTime, endTime, "startTime endTime")
       var eventAvailability = { employeeId: this.context.id, date, startTime, endTime}
       const dateToIso = moment(eventAvailability.date).toISOString();
-      const startTimeToIso = moment(eventAvailability.startTime).toISOString();
-      const endTimeToIso = moment(eventAvailability.endTime).toISOString();
+      const startTimeToIso = moment(eventAvailability.startTime, "HH:mm A").toISOString();
+      const endTimeToIso = moment(eventAvailability.endTime, "HH:mm A").toISOString();
       //const users = [...this.state.users, user]
       eventAvailability = {
           date: dateToIso,
@@ -59,11 +59,13 @@ class EditEventAvailability extends React.Component {
       this.setState({
         employeeId: employeeId,  date: '', startTime: '', endTime: ''
       })
+      console.log(eventAvailability)
   
       try {
 
         await API.graphql(graphqlOperation(CreateEventAvailability, { input: eventAvailability }))
         console.log('item created!')
+
       } catch (err) {
         console.log('error creating event...', err)
       }
@@ -80,7 +82,7 @@ class EditEventAvailability extends React.Component {
         <>
           <Header setUser={this.props.setUser}/>
           <div>
-          <form onSubmit={this.createEvent}>
+          <form action="#" onSubmit={this.createEvent}>
             <h1>Schedule Appointment</h1>
               <label>
                 Date:
