@@ -5,6 +5,7 @@ import { Home, About, Contact, Services, Jobs, Volunteer, Search, SignUp, Accoun
 import { userContext } from './components/UserContext';
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listUsers as ListUsers } from './graphql/queries'
+import { CircularProgress }  from '@material-ui/core'
 
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
       password: '',
       cellphone: '',
       address: '',
+      loading: true
         //setUser: this.setUser,
       };
 
@@ -54,20 +56,24 @@ class App extends React.Component {
             console.log('responseGraphQL')
             console.log(responseGraphQL);
             this.setState(responseGraphQL.data.listUsers.items[0]);
+            this.setState({loading: false});
           })
           .catch((error) => {
             console.log("error")
             console.log(error)
-
+            this.setState({loading: false});
           })
 
         }
-         console.log(response) 
+        else{
+          console.log(response) 
+          this.setState({loading: false});
+        }
       })
       .catch((error) => {
-           console.log("Error") 
-    
-          console.log(error)
+        this.setState({loading: false});           
+        console.log("Error") 
+        console.log(error)
       })
     
     };
@@ -76,7 +82,9 @@ class App extends React.Component {
       return(
         <React.Fragment>
         <userContext.Provider value={this.state}>
-  
+          {this.state.loading == true ? 
+            <CircularProgress />
+          :
           <Switch>
             <Route path="/" render={() => <Home setUser={this.setUser}/>} exact />
             <Route path="/about" component={About} />
@@ -89,26 +97,27 @@ class App extends React.Component {
             {//Account page doesn't refresh, so it doesn't need to be changed//
             }
             <Route path="/account" render={() => {
-            switch(this.state.type){
+              switch(this.state.type){
               case 'client': return <Account setUser={this.setUser}/>;
               case 'admin' : return <Account setUser={this.setUser}/>;
               case 'employee' : return <Account setUser={this.setUser}/>;
               default: return <Redirect to="/" />;
             }
-          }} 
-              />
+          }} />
+              
             {//<Route path="/userlist" component={UserList} />
             }
-            {//Admin is refreshing causing bugs
-            /*
+            
             <Route path="/admin" render={() => this.state.type === 'admin' ?
-             <Admin setUser={this.setUser}/> : <Redirect to="/" />} />
-            }
-           */
+            <Admin setUser={this.setUser}/> : <Redirect to="/" />} />
+            
+          
+          
+          {//<Route path="/admin" render={() => <Admin setUser={this.setUser}/>} />
           }
-          <Route path="/admin" render={() => <Admin setUser={this.setUser}/>} />
-           {//Appointment is refreshing causing bugs
-           /* <Route path="/appointment" render={() => {
+          {//Appointment is refreshing causing bugs
+          }
+           <Route path="/appointment" render={() => {
             switch(this.state.type){
               case 'client': return <Appointment setUser={this.setUser}/>;
               case 'admin' : return <Appointment setUser={this.setUser}/>;
@@ -116,9 +125,10 @@ class App extends React.Component {
               default: return <Redirect to="/" />;
             }
           }} 
-        />*/}
+        />
 
-            <Route path="/appointment" render={() => <Appointment setUser={this.setUser}/>} />
+            {//<Route path="/appointment" render={() => <Appointment setUser={this.setUser}/>} />
+            }
             {//availability is refreshing causing bugs
             }
             <Route path="/availability" render= {() =>
@@ -130,8 +140,8 @@ class App extends React.Component {
             <AvailabilityCalendar setUser={this.setUser} />
             } />
             </Switch>
-         </userContext.Provider>
-    
+          }
+        </userContext.Provider>
         </React.Fragment>
       );
     }
